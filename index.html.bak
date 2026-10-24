@@ -1,0 +1,3168 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f4ed" />
+    <meta
+      name="description"
+      content="Thiệp mời lễ thành hôn của Tuấn Anh và Hồng Thư. Trân trọng kính mời bạn đến chung vui."
+    />
+    <title>Tuấn Anh &amp; Hồng Thư — Thiệp cưới</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500&family=EB+Garamond:wght@400;500;600&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;500&family=Viaoda+Libre&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --wine: #601a28;
+        --wine-deep: #43111d;
+        --paper: #f7f4ed;
+        --paper-light: #fcfaf5;
+        --ink: #3d3030;
+        --muted: #85766f;
+        --gold: #b58a55;
+        --line: rgba(96, 26, 40, 0.2);
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --display: "Playfair Display", Georgia, serif;
+        --script: "Dancing Script", cursive;
+        --sans: "Be Vietnam Pro", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 24px;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .landing-screen {
+        position: fixed;
+        z-index: 20;
+        inset: 0;
+        display: grid;
+        overflow: hidden;
+        place-items: center;
+        padding: 24px 16px;
+        background:
+          radial-gradient(ellipse at 50% 48%, rgba(139, 37, 47, 0.42), transparent 53%),
+          linear-gradient(135deg, #651821, #4b0f18 68%, #390b13);
+      }
+
+      .landing-screen[hidden] {
+        display: none;
+      }
+
+      .falling-hearts {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .landing-heart {
+        position: absolute;
+        top: -30px;
+        left: var(--heart-left);
+        color: var(--heart-color, #a33b42);
+        font-size: var(--heart-size);
+        opacity: 0;
+        animation: ambient-fall var(--heart-duration) ease-in-out var(--heart-delay) infinite;
+        will-change: transform, opacity;
+      }
+
+      .landing-heart svg,
+      .landing-heart-burst svg {
+        display: block;
+        width: 1em;
+        height: 1em;
+      }
+
+      .landing-heart-burst {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: var(--heart-color);
+        font-size: var(--heart-size);
+        opacity: 0;
+        animation: heart-burst 1100ms cubic-bezier(0.16, 0.74, 0.3, 1) forwards;
+        pointer-events: none;
+      }
+
+      @keyframes ambient-fall {
+        0% {
+          opacity: 0;
+          transform: translateY(-8vh) translateX(0) rotate(0deg);
+        }
+        10% { opacity: 0.5; }
+        50% {
+          opacity: 0.6;
+          transform: translateY(48vh) translateX(var(--heart-sway, 20px)) rotate(180deg);
+        }
+        92% { opacity: 0.45; }
+        100% {
+          opacity: 0;
+          transform: translateY(105vh) translateX(0) rotate(360deg);
+        }
+      }
+
+      @keyframes heart-burst {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+        }
+        18% {
+          opacity: 0.95;
+          transform: translate(-50%, -50%) scale(1) rotate(18deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y))) scale(0.55) rotate(150deg);
+        }
+      }
+
+      @keyframes invitation-shine {
+        0% { left: -100%; }
+        50%, 100% { left: 100%; }
+      }
+
+      @keyframes opening-button-flash {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 4px 10px rgba(61, 12, 20, 0.23);
+        }
+        32% {
+          transform: scale(1.08);
+          box-shadow: 0 0 0 8px rgba(255, 240, 220, 0.16), 0 0 30px rgba(255, 239, 214, 0.72);
+        }
+      }
+
+      @keyframes flower-release-left {
+        0% { opacity: 1; filter: drop-shadow(0 2px 3px rgba(55, 23, 29, 0.12)); transform: rotate(10deg) translateX(0) scale(1); }
+        35% { opacity: 0.92; filter: drop-shadow(0 6px 12px rgba(255, 231, 215, 0.54)) blur(1px); }
+        100% { opacity: 0; filter: blur(8px); transform: rotate(-2deg) translate(-76px, -20px) scale(1.12); }
+      }
+
+      @keyframes flower-release-right {
+        0% { opacity: 1; filter: drop-shadow(0 2px 3px rgba(55, 23, 29, 0.12)); transform: rotate(-10deg) scaleX(-1) translateX(0) scale(1); }
+        35% { opacity: 0.92; filter: drop-shadow(0 6px 12px rgba(255, 231, 215, 0.54)) blur(1px); }
+        100% { opacity: 0; filter: blur(8px); transform: rotate(2deg) scaleX(-1) translate(-76px, -20px) scale(1.12); }
+      }
+
+      @keyframes flower-echo-left {
+        0% { opacity: 0; filter: blur(0); transform: rotate(10deg) scale(0.96); }
+        30% { opacity: 0.56; }
+        100% { opacity: 0; filter: blur(7px); transform: translate(-100px, -27px) rotate(-4deg) scale(1.12); }
+      }
+
+      @keyframes flower-echo-right {
+        0% { opacity: 0; filter: blur(0); transform: rotate(-10deg) scaleX(-1) scale(0.96); }
+        30% { opacity: 0.56; }
+        100% { opacity: 0; filter: blur(7px); transform: translate(100px, -27px) rotate(4deg) scaleX(-1) scale(1.12); }
+      }
+
+      .landing-open.is-opening {
+        animation: opening-button-flash 620ms ease-out both;
+        pointer-events: none;
+      }
+
+      .landing-open.is-opening .landing-open-shine {
+        animation: invitation-shine 620ms ease-in-out 1 both;
+      }
+
+      .landing-card {
+        position: relative;
+        display: grid;
+        width: min(100%, 600px);
+        min-height: 420px;
+        align-content: space-between;
+        justify-items: center;
+        overflow: hidden;
+        padding: 36px 34px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 7px;
+        background: #f8f1e9;
+        box-shadow: 0 18px 46px rgba(26, 4, 8, 0.34);
+        text-align: center;
+      }
+
+      .landing-names {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        margin: 0;
+        color: #5f1a25;
+        font-family: "Viaoda Libre", "EB Garamond", var(--serif);
+        font-size: 38px;
+        font-weight: 400;
+        line-height: 0.96;
+      }
+
+      .landing-names .amp {
+        font-family: "EB Garamond", var(--serif);
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .landing-date {
+        margin: 0;
+        color: #805050;
+        font-family: "Lora", var(--serif);
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .landing-divider {
+        width: 112px;
+        height: 1px;
+        margin: 0;
+        background: linear-gradient(90deg, transparent, #9d765f 28%, #9d765f 72%, transparent);
+      }
+
+      .landing-divider::after {
+        display: block;
+        width: 13px;
+        height: 13px;
+        margin: -6px auto 0;
+        color: #805447;
+        background: #f8f1e9;
+        content: "❧";
+        font-size: 15px;
+        line-height: 13px;
+      }
+
+      .landing-invite {
+        margin: 0;
+        color: #805050;
+        font-family: "Lora", var(--serif);
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .landing-open {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        min-width: 142px;
+        min-height: 48px;
+        padding: 0 28px;
+        border: 0;
+        border-radius: 24px;
+        color: #fff6ed;
+        background: #641923;
+        box-shadow: 0 4px 10px rgba(61, 12, 20, 0.23);
+        cursor: pointer;
+        font-family: var(--serif);
+        font-size: 19px;
+        font-weight: 600;
+        transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .landing-open-label {
+        position: relative;
+        z-index: 1;
+      }
+
+      .landing-open-shine {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: -100%;
+        width: 32px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        pointer-events: none;
+        animation: invitation-shine 3s ease-in-out infinite;
+      }
+
+      .landing-open:hover {
+        transform: translateY(-2px) scale(1.04);
+        background: #7b2631;
+        box-shadow: 0 7px 18px rgba(61, 12, 20, 0.35);
+      }
+
+      .landing-open:active,
+      .open-button:active {
+        transform: translateY(1px) scale(0.97);
+      }
+
+      .landing-open:focus-visible,
+      .open-button:focus-visible,
+      .cover-album-link:focus-visible {
+        outline: 3px solid #d3b176;
+        outline-offset: 4px;
+      }
+
+      .landing-screen {
+        opacity: 1;
+        transition: opacity 950ms ease;
+      }
+
+      .landing-screen.is-leaving {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .landing-screen.is-leaving .landing-card {
+        overflow: visible;
+        filter: blur(8px);
+        opacity: 0;
+        transform: scale(1.1);
+        transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 800ms ease, opacity 800ms ease;
+      }
+
+      .landing-screen.is-leaving .landing-bouquet {
+        animation: flower-release-left 1050ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+        pointer-events: none;
+      }
+
+      .landing-screen.is-leaving .landing-bouquet.right {
+        animation-name: flower-release-right;
+      }
+
+      .landing-flower-echo {
+        position: absolute;
+        z-index: 2;
+        height: auto;
+        object-fit: cover;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .landing-flower-echo.left {
+        transform-origin: top center;
+        animation: flower-echo-left 1050ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+      }
+
+      .landing-flower-echo.right {
+        transform-origin: top center;
+        animation: flower-echo-right 1050ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+      }
+
+      .invitation.is-visible {
+        animation: invitation-enter 850ms ease both;
+      }
+
+      @keyframes invitation-enter {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .landing-bouquet {
+        position: absolute;
+        z-index: 0;
+        top: -2px;
+        left: 8px;
+        width: 132px;
+        height: 306px;
+        object-fit: cover;
+        object-position: top center;
+        filter: drop-shadow(0 2px 3px rgba(55, 23, 29, 0.12));
+        transform: rotate(10deg);
+        transform-origin: top center;
+        pointer-events: none;
+      }
+
+      .landing-bouquet.right {
+        right: 5px;
+        left: auto;
+        transform: rotate(-10deg) scaleX(-1);
+        transform-origin: top center;
+      }
+
+      .landing-bouquet .stem { fill: none; stroke: #7b7650; stroke-width: 2; }
+      .landing-bouquet .leaf { fill: #9a936f; }
+      .landing-bouquet .rose { fill: #792432; stroke: #5b1924; stroke-width: 1; }
+      .landing-bouquet .center { fill: #d5b27c; }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .music-toggle {
+        position: fixed;
+        z-index: 50;
+        right: calc(20px + env(safe-area-inset-right));
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        border: 1px solid rgba(255, 244, 227, 0.76);
+        border-radius: 50%;
+        color: #fff8ef;
+        background: var(--wine);
+        box-shadow: 0 5px 18px rgba(48, 16, 21, 0.3);
+        cursor: pointer;
+        font-family: var(--serif);
+        font-size: 25px;
+        line-height: 1;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .music-toggle:hover {
+        background: #7b2631;
+        box-shadow: 0 7px 21px rgba(48, 16, 21, 0.36);
+        transform: translateY(-2px);
+      }
+
+      .music-toggle:focus-visible {
+        outline: 3px solid #d3b176;
+        outline-offset: 4px;
+      }
+
+      .music-toggle::after {
+        position: absolute;
+        width: 28px;
+        height: 2px;
+        border-radius: 2px;
+        background: #fff8ef;
+        content: "";
+        transform: rotate(-48deg);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .music-toggle.is-playing::after {
+        opacity: 0;
+        transform: rotate(-48deg) scaleX(0.2);
+      }
+
+      .music-status {
+        position: fixed;
+        z-index: 49;
+        right: calc(20px + env(safe-area-inset-right));
+        bottom: calc(82px + env(safe-area-inset-bottom));
+        max-width: min(300px, calc(100vw - 40px));
+        margin: 0;
+        padding: 9px 13px;
+        border: 1px solid rgba(255, 244, 227, 0.5);
+        border-radius: 6px;
+        color: #fff8ef;
+        background: var(--wine-deep);
+        box-shadow: 0 4px 14px rgba(48, 16, 21, 0.2);
+        font-size: 12px;
+      }
+
+      .music-status:empty {
+        display: none;
+      }
+
+      .invitation {
+        width: min(100%, 900px);
+        margin: 0 auto;
+        overflow: hidden;
+        background-color: var(--paper);
+        /* The pale veil keeps the etched Huế gate subtle behind invitation text. */
+        background-image:
+          linear-gradient(rgba(247, 244, 237, 0.76), rgba(247, 244, 237, 0.76)),
+          url("assets/wedding-architecture.webp"),
+          url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+        background-position: center, center -75px, 0 0;
+        background-size: 100% 100%, 900px 1150px, 180px 180px;
+        background-repeat: no-repeat, repeat-y, repeat;
+        background-blend-mode: normal, multiply, normal;
+        box-shadow: 0 0 30px rgba(38, 20, 18, 0.07);
+      }
+
+      .paper-section {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: 78px 54px;
+        background:
+          radial-gradient(ellipse at 15% 20%, rgba(255, 255, 255, 0.75), transparent 50%),
+          radial-gradient(ellipse at 85% 78%, rgba(224, 213, 195, 0.2), transparent 48%);
+      }
+
+      .cover {
+        min-height: 1160px;
+        padding: 65px 30px 80px;
+        text-align: center;
+      }
+
+      .save-date,
+      .section-kicker {
+        margin: 0;
+        color: var(--wine);
+        font-family: "Cormorant Garamond", "Times New Roman", serif;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .envelope-scene {
+        position: relative;
+        width: min(100%, 420px);
+        aspect-ratio: 333 / 384;
+        height: auto;
+        margin: 76px auto 0;
+      }
+
+      .portrait {
+        position: absolute;
+        z-index: 20;
+        top: 2%;
+        left: 33%;
+        width: 64%;
+        aspect-ratio: 221 / 309;
+        padding: 7px;
+        background: #fffdfa;
+        box-shadow: 0 10px 25px rgba(55, 27, 29, 0.23);
+        animation: portrait-float 4.8s ease-in-out infinite;
+        transform: rotate(12deg);
+        transform-origin: center;
+        transition: transform 1100ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 700ms ease;
+      }
+
+      @keyframes portrait-float {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+
+        50% {
+          translate: 0 -9px;
+        }
+      }
+
+      .portrait img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 48%;
+      }
+
+      .bouquet {
+        position: absolute;
+        z-index: 25;
+        top: -12%;
+        left: -2%;
+        width: 42%;
+        height: auto;
+        filter: drop-shadow(0 7px 8px rgba(55, 23, 29, 0.22));
+        pointer-events: none;
+        transform: rotate(-17deg);
+        transform-origin: center;
+        animation: bouquet-float 4.2s ease-in-out 900ms infinite;
+      }
+
+      @keyframes bouquet-float {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+
+        50% {
+          translate: 0 -7px;
+        }
+      }
+
+      .envelope-back {
+        position: absolute;
+        z-index: 10;
+        inset: 0;
+        overflow: hidden;
+        clip-path: polygon(0 42%, 50% 0, 100% 42%, 100% 100%, 0 100%);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent 35%),
+          linear-gradient(115deg, #68212d, #4b111d 62%, #641c29);
+        box-shadow: 0 12px 28px rgba(55, 20, 26, 0.16);
+      }
+
+      .envelope-back::before {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(155deg, rgba(144, 63, 69, 0.18), transparent 42%),
+          linear-gradient(155deg, #68212d, #4b111d 74%, #641c29);
+        clip-path: polygon(0 42%, 50% 0, 100% 42%, 100% 100%, 0 100%);
+        content: "";
+      }
+
+      .envelope-back::after,
+      .envelope-front::after {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+        content: "";
+        opacity: 0.2;
+        pointer-events: none;
+      }
+
+      .envelope-flap {
+        position: absolute;
+        z-index: 15;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 44%;
+        background: linear-gradient(165deg, #7d303d, #4b1420);
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        transform-origin: top;
+        backface-visibility: hidden;
+        transition: transform 850ms ease;
+      }
+
+      .envelope-front {
+        position: absolute;
+        z-index: 30;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 57.2%;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 26% 20%, rgba(151, 64, 72, 0.2), transparent 52%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 38%),
+          linear-gradient(120deg, #67212d, #4e121e 53%, #661d2a);
+        clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%);
+        box-shadow: 0 14px 26px rgba(56, 18, 26, 0.2);
+      }
+
+      .envelope-front::before {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M50 45L0 100M50 45L100 100' fill='none' stroke='%23f2d0c2' stroke-opacity='.28' stroke-width='.35'/%3E%3C/svg%3E");
+        content: "";
+      }
+
+      .wax-seal {
+        position: absolute;
+        z-index: 35;
+        top: 65%;
+        left: 50%;
+        display: grid;
+        width: 70px;
+        height: 74px;
+        place-items: center;
+        border: 1px solid rgba(100, 55, 24, 0.76);
+        border-radius: 47% 52% 46% 54% / 48% 44% 53% 50%;
+        background:
+          radial-gradient(ellipse at 32% 24%, rgba(255, 232, 164, 0.95), transparent 25%),
+          radial-gradient(ellipse at 69% 80%, rgba(106, 58, 22, 0.55), transparent 38%),
+          radial-gradient(circle at 45% 40%, #e7ba68 0, #c18b3f 49%, #8d5929 78%, #633b21 100%);
+        box-shadow:
+          0 3px 7px rgba(38, 14, 17, 0.42),
+          0 0 0 1px rgba(245, 206, 127, 0.78),
+          inset 0 0 0 2px rgba(255, 224, 153, 0.82),
+          inset 0 0 0 5px rgba(112, 66, 30, 0.38),
+          inset 0 0 0 7px rgba(255, 223, 154, 0.6);
+        transform: translateX(-50%);
+        transition: opacity 350ms ease, transform 500ms ease;
+      }
+
+      .wax-seal::before {
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(255, 231, 172, 0.52);
+        border-radius: inherit;
+        box-shadow: inset 0 0 3px rgba(102, 58, 26, 0.34);
+        content: "";
+        pointer-events: none;
+      }
+
+      .wax-heart {
+        position: relative;
+        z-index: 1;
+        width: 43px;
+        height: 47px;
+        overflow: visible;
+        filter: drop-shadow(0 1px 0 rgba(255, 224, 148, 0.8));
+        transform: rotate(-8deg);
+      }
+
+      .wax-heart-shadow,
+      .wax-heart-engraving,
+      .wax-heart-highlight {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .wax-heart-shadow {
+        stroke: rgba(91, 49, 20, 0.82);
+        stroke-width: 4.5;
+        transform: translate(1px, 1.5px);
+      }
+
+      .wax-heart-engraving {
+        stroke: #75431f;
+        stroke-width: 3.2;
+      }
+
+      .wax-heart-highlight {
+        stroke: rgba(255, 224, 150, 0.88);
+        stroke-width: 1.25;
+        transform: translate(-1px, -1px);
+      }
+
+      .cover-names {
+        position: relative;
+        z-index: 7;
+        display: grid;
+        gap: 0;
+        margin: 58px 0 0;
+        color: var(--wine-deep);
+        font-family: "Viaoda Libre", "The Nautigal", cursive;
+        font-size: clamp(48px, 7vw, 58px);
+        font-weight: 400;
+        line-height: 0.98;
+      }
+
+      .cover-names > span:not(.amp) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .cover-names .amp {
+        position: absolute;
+        z-index: 0;
+        top: 50%;
+        left: 50%;
+        color: #8e4a4a;
+        font-size: 0.62em;
+        font-style: italic;
+        line-height: 1;
+        opacity: 0.2;
+        transform: translate(-50%, -50%);
+      }
+
+      .cover-date {
+        margin: 16px 0 24px;
+        color: var(--wine);
+        font-family: "Cormorant Garamond", "Times New Roman", serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        line-height: 1.4;
+      }
+
+      .cover-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .open-button {
+        min-height: 43px;
+        padding: 0 25px;
+        border: 1px solid var(--wine);
+        color: #fff9f1;
+        background: var(--wine);
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .cover-album-link {
+        display: inline-flex;
+        min-height: 43px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        border: 1px solid var(--wine);
+        color: #fff9f1;
+        background: var(--wine);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .cover-album-link:hover {
+        color: var(--wine);
+        background: transparent;
+        box-shadow: 0 5px 16px rgba(96, 26, 40, 0.2);
+      }
+
+      .open-button:hover {
+        color: var(--wine);
+        background: transparent;
+        box-shadow: 0 5px 16px rgba(96, 26, 40, 0.2);
+      }
+
+      .invitation-details {
+        padding-top: 52px;
+        padding-bottom: 56px;
+        text-align: center;
+        background-color: transparent;
+      }
+
+      .details-card {
+        position: relative;
+        width: min(100%, 650px);
+        margin: 0 auto;
+        padding: 38px 52px 42px;
+        border: 1px solid rgba(239, 204, 172, 0.2);
+        border-radius: 13px;
+        color: #f3e6d8;
+        background:
+          radial-gradient(ellipse at 16% 8%, rgba(143, 48, 57, 0.28), transparent 43%),
+          linear-gradient(145deg, #681b28, #4b111b 72%, #581622);
+        box-shadow: 0 12px 28px rgba(44, 15, 20, 0.24);
+      }
+
+      .details-bouquet {
+        position: absolute;
+        z-index: 2;
+        top: 225px;
+        right: 14px;
+        width: clamp(145px, 20vw, 195px);
+        height: auto;
+        filter: drop-shadow(0 8px 10px rgba(37, 14, 16, 0.2));
+        pointer-events: none;
+      }
+
+      .invitation-details .heading {
+        color: #f4e6d7;
+        font-size: 32px;
+      }
+
+      .heading {
+        margin: 0;
+        color: var(--wine);
+        font-family: var(--serif);
+        font-size: 37px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        line-height: 1.15;
+        text-transform: uppercase;
+      }
+
+      .parents {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        max-width: 660px;
+        margin: 37px auto 43px;
+      }
+
+      .parent-family {
+        padding: 0 12px;
+        color: #d7bfae;
+        font-family: var(--serif);
+        font-size: 18px;
+        line-height: 1.48;
+      }
+
+      .parent-family strong {
+        display: block;
+        color: #fff5e9;
+        font-size: 21px;
+        font-weight: 500;
+      }
+
+      .parent-family .family-address {
+        display: block;
+        margin-top: 8px;
+        color: #c9a99a;
+        font-family: var(--sans);
+        font-size: 10px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .invitation-note {
+        max-width: 560px;
+        margin: 0 auto 18px;
+        color: #ead5c4;
+        font-size: 10px;
+        letter-spacing: 0.19em;
+        line-height: 1.9;
+        text-transform: uppercase;
+      }
+
+      .couple-names {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        max-width: 700px;
+        margin: 0 auto 32px;
+      }
+
+      .details-card .couple-names {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        max-width: 470px;
+        margin-bottom: 24px;
+      }
+
+      .couple-person h3 {
+        margin: 0;
+        color: #f5dfc8;
+        font-family: var(--serif);
+        font-size: clamp(33px, 5vw, 49px);
+        font-weight: 500;
+      }
+
+      .couple-person p {
+        margin: 2px 0 0;
+        color: #c9aa9a;
+        font-size: 9px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .couple-and {
+        padding: 0 20px;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 33px;
+        font-style: italic;
+      }
+
+      .ceremony {
+        max-width: 490px;
+        margin: 0 auto;
+        padding-top: 23px;
+        border-top: 1px solid rgba(241, 216, 192, 0.35);
+      }
+
+      .ceremony-title {
+        margin: 0 0 18px;
+        color: #ead5c4;
+        font-size: 10px;
+        letter-spacing: 0.17em;
+        line-height: 1.8;
+        text-transform: uppercase;
+      }
+
+      .date-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        color: #f1d9c3;
+      }
+
+      .date-mark .time {
+        min-width: 100px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        line-height: 1.8;
+        text-align: right;
+      }
+
+      .date-mark .day-number {
+        padding: 0 17px;
+        border-right: 1px solid rgba(241, 216, 192, 0.42);
+        border-left: 1px solid rgba(241, 216, 192, 0.42);
+        font-family: var(--serif);
+        font-size: 73px;
+        line-height: 0.93;
+      }
+
+      .date-mark .month-year {
+        min-width: 100px;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        line-height: 1.7;
+        text-align: left;
+      }
+
+      .date-mark .month-year strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 23px;
+        font-weight: 500;
+      }
+
+      .lunar-date {
+        margin: 13px 0 0;
+        color: #c9aa9a;
+        font-family: var(--serif);
+        font-size: 16px;
+        font-style: italic;
+      }
+
+      .album {
+        padding-top: 67px;
+        padding-bottom: 72px;
+        text-align: center;
+        background: transparent;
+      }
+
+      .album .heading {
+        margin-bottom: 30px;
+      }
+
+      .carousel {
+        position: relative;
+        width: min(100%, 500px);
+        margin: 0 auto;
+        perspective: 1400px;
+      }
+
+      .carousel-image,
+      .carousel-side {
+        display: block;
+        width: 100%;
+        height: clamp(390px, 58vw, 560px);
+        object-fit: cover;
+        border-radius: 12px;
+        backface-visibility: hidden;
+      }
+
+      .carousel-image {
+        position: relative;
+        z-index: 4;
+        background: #e2d8ce;
+        box-shadow: 0 20px 42px rgba(44, 25, 24, 0.2);
+        cursor: zoom-in;
+        transition: opacity 720ms ease, transform 720ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      .carousel-image:focus-visible {
+        outline: 3px solid #d3b176;
+        outline-offset: 5px;
+      }
+
+      .carousel-side {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        width: 78%;
+        background: #e2d8ce;
+        box-shadow: 0 14px 30px rgba(44, 25, 24, 0.12);
+        opacity: 0.62;
+        pointer-events: none;
+        transition: opacity 720ms ease, transform 720ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      .carousel-side.previous {
+        left: -48%;
+        transform: rotateY(38deg) scale(0.84);
+        transform-origin: right center;
+      }
+
+      .carousel-side.next {
+        right: -48%;
+        transform: rotateY(-38deg) scale(0.84);
+        transform-origin: left center;
+      }
+
+      .carousel.is-turning-next .carousel-image {
+        opacity: 0.05;
+        transform: translateX(-64%) rotateY(58deg) scale(0.78);
+      }
+
+      .carousel.is-turning-next .carousel-side.next {
+        z-index: 3;
+        opacity: 1;
+        transform: translateX(-78%) rotateY(0) scale(1.08);
+      }
+
+      .carousel.is-turning-next .carousel-side.previous {
+        opacity: 0.16;
+        transform: translateX(-78%) rotateY(68deg) scale(0.68);
+      }
+
+      .carousel.is-turning-previous .carousel-image {
+        opacity: 0.05;
+        transform: translateX(64%) rotateY(-58deg) scale(0.78);
+      }
+
+      .carousel.is-turning-previous .carousel-side.previous {
+        z-index: 3;
+        opacity: 1;
+        transform: translateX(78%) rotateY(0) scale(1.08);
+      }
+
+      .carousel.is-turning-previous .carousel-side.next {
+        opacity: 0.16;
+        transform: translateX(78%) rotateY(-68deg) scale(0.68);
+      }
+
+      .carousel.is-fading .carousel-image {
+        opacity: 0.25;
+        transform: scale(0.97);
+      }
+
+      .carousel.is-resetting .carousel-image,
+      .carousel.is-resetting .carousel-side {
+        transition: none;
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        z-index: 5;
+        top: 50%;
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        color: var(--wine);
+        background: transparent;
+        cursor: pointer;
+        font-family: var(--serif);
+        font-size: 24px;
+        transform: translateY(-50%);
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(67, 17, 29, 0.12);
+      }
+
+      .carousel-arrow.previous {
+        left: -22px;
+      }
+
+      .carousel-arrow.next {
+        right: -22px;
+      }
+
+      .carousel-caption {
+        margin: 15px 0 0;
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 18px;
+        font-style: italic;
+      }
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 9px;
+        margin-top: 18px;
+      }
+
+      .carousel-dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: 1px solid var(--wine);
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .carousel-dot[aria-current="true"] {
+        background: var(--wine);
+      }
+
+      .photo-viewer {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        max-height: none;
+        margin: 0;
+        padding: 64px 84px 78px;
+        overflow: hidden;
+        border: 0;
+        color: #fff8ef;
+        background: transparent;
+      }
+
+      .photo-viewer[open] {
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .photo-viewer::backdrop {
+        background: rgba(20, 10, 13, 0.92);
+        backdrop-filter: blur(5px);
+      }
+
+      .photo-viewer-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
+        user-select: none;
+      }
+
+      .photo-viewer-caption {
+        margin: 14px 0 0;
+        color: #f3e6d8;
+        font-family: var(--serif);
+        font-size: 17px;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .photo-viewer-button {
+        position: fixed;
+        z-index: 1;
+        display: grid;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        border: 1px solid rgba(255, 248, 239, 0.78);
+        border-radius: 50%;
+        color: #fff8ef;
+        background: rgba(91, 24, 35, 0.82);
+        cursor: pointer;
+        font-family: var(--serif);
+        font-size: 29px;
+        line-height: 1;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .photo-viewer-button:hover {
+        background: var(--wine);
+        transform: scale(1.06);
+      }
+
+      .photo-viewer-button:focus-visible {
+        outline: 3px solid #d3b176;
+        outline-offset: 3px;
+      }
+
+      .photo-viewer-close {
+        top: 18px;
+        right: 22px;
+        border-radius: 6px;
+        font-family: var(--sans);
+        font-size: 27px;
+      }
+
+      .photo-viewer-previous {
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+      }
+
+      .photo-viewer-previous:hover {
+        transform: translateY(-50%) scale(1.06);
+      }
+
+      .photo-viewer-next {
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+      }
+
+      .photo-viewer-next:hover {
+        transform: translateY(-50%) scale(1.06);
+      }
+
+      .reception {
+        position: relative;
+        padding-top: 68px;
+        padding-bottom: 76px;
+        text-align: center;
+        background: transparent;
+      }
+
+      .reception-card {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 650px);
+        margin: 0 auto;
+        padding: 36px 52px 40px;
+        border: 1px solid rgba(239, 204, 172, 0.2);
+        border-radius: 13px;
+        color: #f3e6d8;
+        background:
+          radial-gradient(ellipse at 16% 8%, rgba(143, 48, 57, 0.28), transparent 43%),
+          linear-gradient(145deg, #681b28, #4b111b 72%, #581622);
+        box-shadow: 0 12px 28px rgba(44, 15, 20, 0.24);
+      }
+
+      .reception-bouquet {
+        position: absolute;
+        z-index: 2;
+        top: 150px;
+        left: max(14px, calc(50% - 390px));
+        width: clamp(120px, 15vw, 145px);
+        height: auto;
+        filter: drop-shadow(0 8px 10px rgba(37, 14, 16, 0.2));
+        pointer-events: none;
+      }
+
+      .reception .heading {
+        margin-bottom: 20px;
+        color: #f4e6d7;
+        font-size: 30px;
+      }
+
+      .reception-time {
+        margin: 0 0 12px;
+        color: #f3e6d8;
+        font-family: var(--serif);
+        font-size: 23px;
+      }
+
+      .reception .date-mark {
+        margin-bottom: 16px;
+        color: #f1d9c3;
+      }
+
+      .reception .date-mark .day-number {
+        border-color: rgba(241, 216, 192, 0.42);
+      }
+
+      .reception .date-mark .time,
+      .reception .date-mark .month-year {
+        font-size: 12px;
+        letter-spacing: 0.04em;
+      }
+
+      .reception .date-mark .time strong,
+      .reception .date-mark .month-year strong {
+        font-family: var(--serif);
+        font-size: 20px;
+        font-style: italic;
+      }
+
+      .reception .date-mark .day-number {
+        font-family: var(--serif);
+        font-size: 68px;
+        font-style: italic;
+      }
+
+      .event-hours {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        margin: 0 auto 24px;
+      }
+
+      .event-hour {
+        min-width: 100px;
+        padding: 8px 15px;
+        color: #d9bdb0;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .event-hour strong {
+        display: block;
+        margin-top: 5px;
+        color: #f3e6d8;
+        font-family: var(--serif);
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      .calendar {
+        width: min(100%, 365px);
+        margin: 0 auto 21px;
+        padding: 18px 22px 21px;
+        border: 1px solid rgba(255, 248, 239, 0.72);
+        border-radius: 10px;
+        color: var(--wine);
+        background: #eee5d8;
+        box-shadow: 0 5px 14px rgba(28, 10, 13, 0.12);
+      }
+
+      .calendar-title {
+        margin: 0 0 13px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(96, 26, 40, 0.28);
+        color: #8c6266;
+        font-family: var(--script);
+        font-size: 25px;
+        font-weight: 500;
+      }
+
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px 0;
+        color: #72504a;
+        font-family: var(--serif);
+        font-size: 13px;
+      }
+
+      .calendar-grid span {
+        display: grid;
+        min-height: 31px;
+        place-items: center;
+      }
+
+      .calendar-grid .weekday {
+        color: #9b7770;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .calendar-grid .wedding-day {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        justify-self: center;
+        color: #fff8ef;
+        font-size: 12px;
+        font-weight: 600;
+        isolation: isolate;
+      }
+
+      .calendar-grid .wedding-day::before {
+        position: absolute;
+        z-index: -1;
+        color: var(--wine);
+        content: "♥";
+        font-size: 36px;
+        line-height: 1;
+        filter: drop-shadow(0 2px 2px rgba(38, 14, 18, 0.24));
+      }
+
+      .calendar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 11px;
+      }
+
+      .reception .calendar-actions .text-link {
+        border: 0;
+        border-radius: 24px;
+        color: var(--wine);
+        background: #eee5d8;
+        font-family: var(--serif);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .reception .calendar-actions .text-link:hover {
+        color: var(--wine-deep);
+        background: #fff8ef;
+      }
+
+      .reception .calendar-actions .outline-button {
+        min-height: 40px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 24px;
+        color: var(--wine);
+        background: #eee5d8;
+        font-family: var(--serif);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+      }
+
+      .reception .calendar-actions .outline-button:hover {
+        color: var(--wine-deep);
+        background: #fff8ef;
+      }
+
+      .rsvp-dialog {
+        position: fixed;
+        width: min(calc(100% - 32px), 440px);
+        padding: 32px;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        background: var(--paper-light);
+        box-shadow: 0 20px 70px rgba(30, 12, 15, 0.3);
+      }
+
+      .rsvp-dialog [hidden] {
+        display: none;
+      }
+
+      .rsvp-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: grid;
+        width: 32px;
+        min-height: 32px !important;
+        place-items: center;
+        padding: 0 !important;
+        border: 0;
+        border-radius: 50%;
+        color: var(--muted);
+        background: #f1f1f3;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .rsvp-success {
+        padding: 10px 0 2px;
+        text-align: center;
+      }
+
+      .rsvp-success-icon {
+        display: grid;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 16px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--wine);
+        background: rgba(96, 26, 40, 0.12);
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .rsvp-success h2 {
+        font-family: var(--sans);
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .rsvp-success p {
+        margin: 8px 0 24px;
+      }
+
+      .rsvp-success .outline-button {
+        min-width: 100px;
+        border: 0;
+        border-radius: 24px;
+        color: #fff9f1;
+        background: var(--wine);
+        font-family: var(--serif);
+        font-size: 13px;
+        letter-spacing: 0;
+      }
+
+      .rsvp-success .outline-button:hover {
+        color: #fff9f1;
+        background: var(--wine-deep);
+      }
+
+      .rsvp-dialog::backdrop {
+        background: rgba(33, 13, 18, 0.62);
+      }
+
+      .rsvp-dialog h2 {
+        margin: 0;
+        color: var(--wine);
+        font-family: var(--serif);
+        font-size: 34px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .rsvp-dialog p {
+        margin: 8px 0 22px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .rsvp-dialog label {
+        display: block;
+        margin: 13px 0 6px;
+        color: var(--wine);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .rsvp-dialog input,
+      .rsvp-dialog textarea {
+        width: 100%;
+        min-height: 46px;
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        color: var(--ink);
+        background: #fff;
+        font-size: 12px;
+      }
+
+      .rsvp-dialog textarea {
+        min-height: 78px;
+        resize: vertical;
+      }
+
+      .rsvp-attendance-options {
+        display: grid;
+        gap: 8px;
+      }
+
+      .rsvp-attendance-fieldset {
+        min-width: 0;
+        margin: 13px 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .rsvp-attendance-fieldset legend {
+        margin-bottom: 6px;
+        color: var(--wine);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .rsvp-attendance-choice {
+        position: relative;
+        display: flex !important;
+        min-height: 48px;
+        align-items: center;
+        gap: 10px;
+        margin: 0 !important;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        color: var(--ink) !important;
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+      }
+
+      .rsvp-attendance-choice input {
+        width: 18px;
+        min-height: 18px;
+        margin: 0;
+        accent-color: var(--wine);
+      }
+
+      .rsvp-attendance-choice:has(input:checked) {
+        border-color: var(--wine);
+        background: #fbf4f0;
+      }
+
+      .rsvp-attendance-choice:has(input:focus-visible) {
+        outline: 3px solid rgba(181, 138, 85, 0.6);
+        outline-offset: 2px;
+      }
+
+      .rsvp-guest-count {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rsvp-guest-count[hidden] {
+        display: none;
+      }
+
+      .rsvp-guest-count label {
+        margin: 0;
+      }
+
+      .rsvp-guest-stepper {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .rsvp-guest-stepper button {
+        width: 34px;
+        min-height: 34px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--wine);
+        background: transparent;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .rsvp-guest-stepper input {
+        width: 42px;
+        min-height: 34px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .rsvp-dialog .dialog-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .rsvp-dialog button {
+        min-height: 42px;
+        padding: 0 16px;
+      }
+
+      .rsvp-status {
+        min-height: 18px;
+        margin: 12px 0 0 !important;
+        color: var(--wine) !important;
+      }
+
+      .text-link,
+      .outline-button {
+        display: inline-flex;
+        min-height: 41px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        border: 1px solid var(--wine);
+        color: var(--wine);
+        background: transparent;
+        cursor: pointer;
+        font-size: 9px;
+        letter-spacing: 0.13em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 180ms ease, background 180ms ease;
+      }
+
+      .text-link:hover,
+      .outline-button:hover {
+        color: #fff;
+        background: var(--wine);
+      }
+
+      .venue {
+        padding-top: 65px;
+        padding-bottom: 67px;
+        color: #fff8ef;
+        text-align: center;
+        background:
+          linear-gradient(rgba(61, 14, 27, 0.88), rgba(61, 14, 27, 0.9)),
+          url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=85") center / cover;
+      }
+
+      .venue .heading {
+        color: #fff5e9;
+        font-size: 30px;
+      }
+
+      .venue-address {
+        max-width: 570px;
+        margin: 15px auto 23px;
+        color: #e8d7ca;
+        font-family: var(--serif);
+        font-size: 19px;
+        line-height: 1.6;
+      }
+
+      .venue .text-link {
+        border-color: #d2ad83;
+        color: #fff5e9;
+      }
+
+      .venue .text-link:hover {
+        color: var(--wine);
+        background: #fff5e9;
+      }
+
+      .map-placeholder {
+        width: min(100%, 650px);
+        height: 245px;
+        margin: 25px auto 0;
+        border: 5px solid rgba(255, 249, 240, 0.82);
+        background:
+          linear-gradient(35deg, transparent 46%, rgba(255, 255, 255, 0.7) 47% 49%, transparent 50%),
+          linear-gradient(145deg, transparent 42%, rgba(255, 255, 255, 0.65) 43% 45%, transparent 46%),
+          repeating-linear-gradient(0deg, transparent 0 35px, rgba(96, 26, 40, 0.08) 36px 38px),
+          #dedbd0;
+      }
+
+      .dress-code {
+        padding-top: 51px;
+        padding-bottom: 49px;
+        text-align: center;
+      }
+
+      .dress-code .heading {
+        font-size: 30px;
+      }
+
+      .dress-code p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 18px;
+      }
+
+      .color-swatches {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 19px;
+      }
+
+      .swatch {
+        width: 23px;
+        height: 23px;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px var(--line);
+      }
+
+      .schedule {
+        padding-top: 67px;
+        padding-bottom: 72px;
+        background: transparent;
+      }
+
+      .schedule .heading {
+        margin-bottom: 34px;
+        text-align: center;
+      }
+
+      .timeline {
+        position: relative;
+        width: min(100%, 490px);
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+      }
+
+      .timeline::before {
+        position: absolute;
+        top: 12px;
+        bottom: 12px;
+        left: 84px;
+        width: 1px;
+        content: "";
+        background: var(--line);
+      }
+
+      .timeline li {
+        position: relative;
+        display: grid;
+        min-height: 55px;
+        grid-template-columns: 70px 28px 1fr;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .timeline time {
+        color: var(--wine);
+        font-family: var(--serif);
+        font-size: 21px;
+        text-align: right;
+      }
+
+      .timeline-marker {
+        z-index: 1;
+        width: 11px;
+        height: 11px;
+        justify-self: center;
+        border: 1px solid var(--wine);
+        border-radius: 50%;
+        background: var(--paper);
+      }
+
+      .timeline li:nth-child(3) .timeline-marker {
+        background: var(--wine);
+        box-shadow: 0 0 0 4px rgba(96, 26, 40, 0.12);
+      }
+
+      .timeline p {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 20px;
+      }
+
+      .guestbook {
+        padding-top: 70px;
+        padding-bottom: 76px;
+        text-align: center;
+        background: transparent;
+      }
+
+      .guestbook .heading {
+        margin-bottom: 29px;
+      }
+
+      .guestbook-form {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr auto;
+        gap: 10px;
+        width: min(100%, 700px);
+        margin: 0 auto 25px;
+      }
+
+      .guestbook-form input,
+      .guestbook-form textarea {
+        width: 100%;
+        min-height: 43px;
+        padding: 11px 13px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        outline: none;
+        color: var(--ink);
+        background: #fff;
+        font-size: 12px;
+      }
+
+      .guestbook-form textarea {
+        min-height: 43px;
+        resize: vertical;
+      }
+
+      .guestbook-form input:focus,
+      .guestbook-form textarea:focus {
+        border-color: var(--wine);
+      }
+
+      .guestbook-form button {
+        min-height: 43px;
+        padding: 0 15px;
+        border: 1px solid var(--wine);
+        color: white;
+        background: var(--wine);
+        cursor: pointer;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      .wishes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+        width: min(100%, 700px);
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .wish {
+        padding: 15px 17px;
+        border-left: 2px solid rgba(96, 26, 40, 0.4);
+        background: #f5f0e7;
+      }
+
+      .wish strong {
+        display: block;
+        color: var(--wine);
+        font-family: var(--serif);
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .wish p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.7;
+      }
+
+      .gift {
+        padding-top: 62px;
+        padding-bottom: 70px;
+        text-align: center;
+        background: transparent;
+      }
+
+      .gift-card {
+        width: min(100%, 440px);
+        margin: 0 auto;
+        padding: 30px 25px;
+        border: 1px solid var(--line);
+        background: var(--paper-light);
+      }
+
+      .gift-card .heading {
+        font-size: 29px;
+      }
+
+      .gift-icon {
+        margin: 15px 0;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 52px;
+      }
+
+      .gift-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.8;
+      }
+
+      .gift-card button {
+        margin-top: 18px;
+      }
+
+      .gift-message {
+        min-height: 18px;
+        margin-top: 14px !important;
+        color: var(--wine) !important;
+      }
+
+      .closing {
+        padding: 34px 24px 40px;
+        color: #f6eadd;
+        text-align: center;
+        background: var(--wine-deep);
+      }
+
+      .closing p {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 24px;
+      }
+
+      .closing .closing-names {
+        margin-top: 9px;
+        color: #fff7eb;
+        font-size: 32px;
+      }
+
+      .closing .image-credit {
+        margin-top: 20px;
+        color: rgba(246, 234, 221, 0.72);
+        font-family: var(--sans);
+        font-size: 10px;
+      }
+
+      .image-credit a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      @media (max-width: 620px) {
+        .landing-card {
+          width: min(100%, 430px);
+          min-height: 370px;
+          padding: 30px 24px 26px;
+        }
+
+        .landing-names {
+          font-size: 35px;
+        }
+
+        .landing-date,
+        .landing-invite {
+          font-size: 16px;
+        }
+
+        .landing-open {
+          min-width: 132px;
+          min-height: 44px;
+        }
+
+        .landing-bouquet {
+          top: 0;
+          left: 4px;
+          width: 106px;
+          height: 242px;
+        }
+
+        .paper-section {
+          padding-right: 22px;
+          padding-left: 22px;
+        }
+
+        .cover {
+          min-height: 1010px;
+          padding-top: 48px;
+          padding-bottom: 58px;
+        }
+
+        .envelope-scene {
+          width: min(100%, 420px);
+          margin-top: 38px;
+        }
+
+        .wax-seal {
+          width: 60px;
+          height: 64px;
+        }
+
+        .wax-heart {
+          width: 37px;
+          height: 41px;
+        }
+
+        .cover-names {
+          margin-top: 32px;
+          font-size: clamp(42px, 12vw, 52px);
+        }
+
+        .cover-actions {
+          gap: 8px;
+        }
+
+        .cover-actions .open-button,
+        .cover-album-link {
+          min-height: 42px;
+          padding-right: 13px;
+          padding-left: 13px;
+          font-size: 9px;
+          letter-spacing: 0.1em;
+        }
+
+        .invitation-details {
+          padding: 35px 18px 42px;
+        }
+
+        .details-card {
+          padding: 34px 18px 38px;
+        }
+
+        .details-bouquet {
+          top: 300px;
+          right: -7px;
+          width: 84px;
+        }
+
+        .reception-card {
+          padding: 32px 14px 30px;
+        }
+
+        .reception-bouquet {
+          top: 135px;
+          left: -8px;
+          width: 82px;
+        }
+
+        .reception .heading {
+          font-size: 25px;
+        }
+
+        .reception-time {
+          font-size: 20px;
+        }
+
+        .reception .date-mark .time,
+        .reception .date-mark .month-year {
+          min-width: 66px;
+          font-size: 8px;
+        }
+
+        .reception .date-mark .day-number {
+          padding: 0 12px;
+          font-size: 59px;
+        }
+
+        .reception .date-mark .time strong,
+        .reception .date-mark .month-year strong {
+          font-size: 18px;
+        }
+
+        .reception .lunar-date {
+          font-size: 13px;
+        }
+
+        .calendar {
+          padding: 16px 12px 18px;
+        }
+
+        .calendar-grid {
+          font-size: 11px;
+        }
+
+        .invitation-details .heading {
+          max-width: 280px;
+          margin: 0 auto;
+          font-size: 26px;
+        }
+
+        .heading {
+          font-size: 30px;
+        }
+
+        .parents {
+          gap: 12px;
+          margin: 28px auto 34px;
+        }
+
+        .parent-family {
+          padding: 0 4px;
+          font-size: 15px;
+        }
+
+        .parent-family strong {
+          font-size: 17px;
+        }
+
+        .couple-names {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+
+        .couple-and {
+          padding: 1px 0;
+          font-size: 24px;
+        }
+
+        .couple-person h3 {
+          font-size: 39px;
+        }
+
+        .date-mark {
+          gap: 6px;
+        }
+
+        .date-mark .time,
+        .date-mark .month-year {
+          min-width: 75px;
+          font-size: 8px;
+        }
+
+        .date-mark .day-number {
+          padding: 0 12px;
+          font-size: 62px;
+        }
+
+        .date-mark .month-year strong {
+          font-size: 20px;
+        }
+
+        .carousel-image {
+          height: clamp(360px, 112vw, 460px);
+        }
+
+        .carousel {
+          width: calc(100% - 36px);
+        }
+
+        .carousel-side {
+          height: clamp(360px, 112vw, 460px);
+        }
+
+        .carousel-side.previous {
+          left: -40%;
+          transform: rotateY(38deg) scale(0.78);
+        }
+
+        .carousel-side.next {
+          right: -40%;
+          transform: rotateY(-38deg) scale(0.78);
+        }
+
+        .carousel-arrow.previous {
+          left: -14px;
+        }
+
+        .carousel-arrow.next {
+          right: -14px;
+        }
+
+        .photo-viewer {
+          padding: 62px 12px 76px;
+        }
+
+        .photo-viewer-button {
+          width: 42px;
+          height: 42px;
+        }
+
+        .photo-viewer-close {
+          top: 12px;
+          right: 12px;
+        }
+
+        .photo-viewer-previous {
+          left: 10px;
+        }
+
+        .photo-viewer-next {
+          right: 10px;
+        }
+
+        .event-hours {
+          gap: 9px;
+        }
+
+        .event-hour {
+          min-width: 0;
+          flex: 1;
+          padding: 10px 11px;
+          font-size: 8px;
+        }
+
+        .venue .heading {
+          font-size: 24px;
+        }
+
+        .map-placeholder {
+          height: 190px;
+        }
+
+        .guestbook-form {
+          grid-template-columns: 1fr;
+        }
+
+        .guestbook-form button {
+          min-height: 45px;
+        }
+
+        .wishes {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="landing-screen" id="landing-screen" aria-label="Thiệp mời">
+      <div class="falling-hearts" id="falling-hearts" aria-hidden="true"></div>
+      <div class="landing-card">
+        <template>
+        <svg class="flower-definitions" aria-hidden="true">
+          <defs>
+            <linearGradient id="rose-petal" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#bd6870" />
+              <stop offset="0.28" stop-color="#9b3b4b" />
+              <stop offset="0.7" stop-color="#702031" />
+              <stop offset="1" stop-color="#481522" />
+            </linearGradient>
+            <linearGradient id="rose-petal-light" x1="0" y1="0" x2="0.8" y2="1">
+              <stop stop-color="#d98c87" stop-opacity="0.82" />
+              <stop offset="0.5" stop-color="#a94d57" stop-opacity="0.25" />
+              <stop offset="1" stop-color="#45131f" stop-opacity="0.42" />
+            </linearGradient>
+            <linearGradient id="rose-light" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#fff4df" />
+              <stop offset="0.55" stop-color="#e8d7bb" />
+              <stop offset="1" stop-color="#bda985" />
+            </linearGradient>
+            <linearGradient id="rose-leaf" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#b7aa7e" />
+              <stop offset="0.45" stop-color="#89906a" />
+              <stop offset="1" stop-color="#596344" />
+            </linearGradient>
+            <symbol id="landing-rose" viewBox="-32 -32 64 64">
+              <path d="M-2 4C-11 1-18 4-25 11c1-11-2-18-9-25 11 1 18-2 25-11 4 10 10 15 21 18-9 5-13 12-13 24C-6 9-12 8-21 12Z" fill="url(#rose-leaf)" stroke="#596344" stroke-width="0.85" />
+              <g fill="url(#rose-petal)" stroke="#5d1926" stroke-width="0.65" stroke-linejoin="round">
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(0)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(45)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(90)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(135)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(180)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(225)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(270)" />
+                <path d="M0 3C-9-2-18-12-16-22c1-8 10-11 15-5C7-18 8-7 4 2Z" transform="rotate(315)" />
+              </g>
+              <g fill="url(#rose-petal-light)" stroke="#71303a" stroke-width="0.55" stroke-linejoin="round">
+                <path d="M0 4C-7 0-10-9-6-16-2-23 7-21 10-14 13-8 8 0 0 4Z" transform="rotate(12)" />
+                <path d="M0 4C-7 0-10-9-6-16-2-23 7-21 10-14 13-8 8 0 0 4Z" transform="rotate(84)" />
+                <path d="M0 4C-7 0-10-9-6-16-2-23 7-21 10-14 13-8 8 0 0 4Z" transform="rotate(156)" />
+                <path d="M0 4C-7 0-10-9-6-16-2-23 7-21 10-14 13-8 8 0 0 4Z" transform="rotate(228)" />
+                <path d="M0 4C-7 0-10-9-6-16-2-23 7-21 10-14 13-8 8 0 0 4Z" transform="rotate(300)" />
+              </g>
+              <g fill="#a94d57" stroke="#681d2d" stroke-width="0.7">
+                <path d="M0 4C-9-2-11-12-6-18 0-23 8-18 8-10 9-4 4 2 0 4Z" transform="rotate(0)" />
+                <path d="M0 4C-9-2-11-12-6-18 0-23 8-18 8-10 9-4 4 2 0 4Z" transform="rotate(72)" />
+                <path d="M0 4C-9-2-11-12-6-18 0-23 8-18 8-10 9-4 4 2 0 4Z" transform="rotate(144)" />
+                <path d="M0 4C-9-2-11-12-6-18 0-23 8-18 8-10 9-4 4 2 0 4Z" transform="rotate(216)" />
+                <path d="M0 4C-9-2-11-12-6-18 0-23 8-18 8-10 9-4 4 2 0 4Z" transform="rotate(288)" />
+              </g>
+              <path d="M-5 3C-11-3-5-10 1-9 7-8 8-2 3 1c-3 2-2 5 2 6-5 4-14-1-10-7" fill="#641827" stroke="#4d1220" stroke-width="0.8" />
+              <g fill="none" stroke="#e2a093" stroke-linecap="round" opacity="0.72">
+                <path d="M-17-14c4 3 6 7 7 12m17-13c-4 4-5 8-5 13m15-1c-5 2-8 5-10 9M-14 3c4 0 7 2 10 5m-6-18c2 4 5 7 9 9" stroke-width="0.65" />
+              </g>
+              <path d="M-2-3c3-2 6 0 5 3-1 2-4 2-4 4" fill="none" stroke="#d17c72" stroke-width="1" stroke-linecap="round" />
+              <circle cx="0" cy="0" r="1.7" fill="#d4ae72" />
+            </symbol>
+            <symbol id="landing-cream-rose" viewBox="-24 -24 48 48">
+              <g fill="url(#rose-light)" stroke="#b9a783" stroke-width="0.65">
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(0)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(45)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(90)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(135)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(180)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(225)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(270)" />
+                <path d="M0 2C-8-1-15-8-13-15c2-6 8-7 12-2C4-18 7-10 3-3Z" transform="rotate(315)" />
+              </g>
+              <g fill="#c5a778">
+                <circle cx="-3" cy="-1" r="1" /><circle cx="3" cy="-2" r="1" />
+                <circle cx="1" cy="4" r="1" /><circle cx="-4" cy="4" r="0.8" />
+              </g>
+            </symbol>
+            <symbol id="landing-blossom" viewBox="-12 -12 24 24">
+              <g fill="url(#rose-light)" stroke="#bca783" stroke-width="0.55">
+                <ellipse cy="-5" rx="2.7" ry="5" />
+                <ellipse cy="-5" rx="2.7" ry="5" transform="rotate(72)" />
+                <ellipse cy="-5" rx="2.7" ry="5" transform="rotate(144)" />
+                <ellipse cy="-5" rx="2.7" ry="5" transform="rotate(216)" />
+                <ellipse cy="-5" rx="2.7" ry="5" transform="rotate(288)" />
+              </g>
+              <circle r="1.8" fill="#c49b5f" />
+            </symbol>
+            <symbol id="landing-spray" viewBox="0 0 40 70">
+              <path d="M4 68C16 49 23 28 31 4m-14 39C10 34 7 26 2 22m17 9c8-2 13-6 18-12m-27 30C6 43 4 38 0 35" fill="none" stroke="#8d7655" stroke-width="1.1" stroke-linecap="round" />
+              <g fill="#f4e7d3" stroke="#c6ae8d" stroke-width="0.45">
+                <circle cx="31" cy="4" r="2.4" /><circle cx="28" cy="11" r="2" />
+                <circle cx="34" cy="14" r="2.1" /><circle cx="36" cy="21" r="2" />
+                <circle cx="24" cy="18" r="1.8" /><circle cx="22" cy="26" r="2" />
+                <circle cx="2" cy="22" r="2" /><circle cx="0" cy="18" r="1.5" />
+                <circle cx="4" cy="16" r="1.5" /><circle cx="37" cy="12" r="1.4" />
+                <circle cx="17" cy="31" r="1.7" /><circle cx="10" cy="42" r="1.4" />
+              </g>
+              <g fill="#c49c66">
+                <circle cx="31" cy="4" r="0.7" /><circle cx="28" cy="11" r="0.6" />
+                <circle cx="34" cy="14" r="0.7" /><circle cx="36" cy="21" r="0.6" />
+                <circle cx="24" cy="18" r="0.6" /><circle cx="2" cy="22" r="0.6" />
+              </g>
+            </symbol>
+          </defs>
+        </svg>
+        <svg class="landing-bouquet" viewBox="0 0 110 190" aria-hidden="true">
+          <g fill="url(#rose-leaf)" stroke="#69744d" stroke-width="0.8">
+            <path d="M21 188C8 158 7 127 15 97c11 22 14 54 6 91Z" /><path d="M27 153C8 143 2 131 3 117c17 8 24 18 24 36Z" />
+            <path d="M36 126C18 113 15 99 19 85c15 11 21 24 17 41Z" /><path d="M43 98C29 82 30 68 37 56c11 14 14 28 6 42Z" />
+            <path d="M52 75C43 57 47 44 57 35c7 15 6 28-5 40Z" /><path d="M17 169C3 166-3 157-4 146c13 5 20 12 21 23Z" />
+            <path d="M31 140c9-18 20-25 34-26-6 16-16 24-34 26Z" /><path d="M43 108c8-18 19-26 33-28-5 17-15 25-33 28Z" />
+            <path d="M53 79c10-15 21-20 34-18-8 14-19 21-34 18Z" />
+          </g>
+          <g fill="none" stroke="#d1c39a" stroke-width="0.8" stroke-linecap="round" opacity="0.75">
+            <path d="M21 185C14 154 13 126 16 105m5 52-14-24m15-9 12-24m-1 24-17-27m18-3 11-28m-10 31-13-24m14-10 13-26m-3 31 25-25m-33 49 25-24m-43 48-16-7" />
+          </g>
+          <g fill="none" stroke="#77724f" stroke-linecap="round">
+            <path d="M19 187C27 139 35 91 60 23M21 164C13 129 8 94 7 66M30 142c18-31 38-59 68-83" stroke-width="1.8" />
+            <path d="M60 23c9-8 14-15 17-22m1 28c9-6 15-12 19-20M8 66C5 56 1 50-6 45m14 40c-6-8-12-12-20-14" stroke-width="1.1" />
+          </g>
+          <g fill="#8b4c4e">
+            <circle cx="78" cy="2" r="1.8" /><circle cx="84" cy="-4" r="1.5" /><circle cx="90" cy="-8" r="1.4" />
+            <circle cx="98" cy="25" r="1.7" /><circle cx="104" cy="19" r="1.4" /><circle cx="108" cy="13" r="1.2" />
+            <circle cx="-6" cy="45" r="1.7" /><circle cx="-11" cy="39" r="1.4" />
+          </g>
+          <use href="#landing-spray" x="49" y="-1" width="57" height="100" />
+          <use href="#landing-spray" x="-18" y="20" width="43" height="75" />
+          <use href="#landing-blossom" x="73" y="7" width="9" height="9" />
+          <use href="#landing-blossom" x="90" y="23" width="8" height="8" />
+          <use href="#landing-blossom" x="-8" y="38" width="8" height="8" />
+          <use href="#landing-blossom" x="16" y="30" width="7" height="7" />
+          <use href="#landing-rose" x="-11" y="61" width="58" height="58" />
+          <use href="#landing-rose" x="26" y="104" width="57" height="57" />
+          <use href="#landing-rose" x="-8" y="145" width="49" height="49" />
+          <use href="#landing-cream-rose" x="16" y="83" width="43" height="43" />
+          <use href="#landing-cream-rose" x="45" y="137" width="35" height="35" />
+          <g fill="#8a2434" stroke="#5d1926" stroke-width="0.7">
+            <path d="M72 38c-8-10-2-18 4-18 7 1 8 9 2 18l-3 4Z" /><path d="M87 31c-6-9 0-16 6-15 6 2 5 10-1 16l-3 3Z" />
+          </g>
+        </svg>
+        <svg class="landing-bouquet right" viewBox="0 0 110 190" aria-hidden="true">
+          <g fill="url(#rose-leaf)" stroke="#69744d" stroke-width="0.8">
+            <path d="M21 188C8 158 7 127 15 97c11 22 14 54 6 91Z" /><path d="M27 153C8 143 2 131 3 117c17 8 24 18 24 36Z" />
+            <path d="M36 126C18 113 15 99 19 85c15 11 21 24 17 41Z" /><path d="M43 98C29 82 30 68 37 56c11 14 14 28 6 42Z" />
+            <path d="M52 75C43 57 47 44 57 35c7 15 6 28-5 40Z" /><path d="M17 169C3 166-3 157-4 146c13 5 20 12 21 23Z" />
+            <path d="M31 140c9-18 20-25 34-26-6 16-16 24-34 26Z" /><path d="M43 108c8-18 19-26 33-28-5 17-15 25-33 28Z" />
+            <path d="M53 79c10-15 21-20 34-18-8 14-19 21-34 18Z" />
+          </g>
+          <g fill="none" stroke="#d1c39a" stroke-width="0.8" stroke-linecap="round" opacity="0.75">
+            <path d="M21 185C14 154 13 126 16 105m5 52-14-24m15-9 12-24m-1 24-17-27m18-3 11-28m-10 31-13-24m14-10 13-26m-3 31 25-25m-33 49 25-24m-43 48-16-7" />
+          </g>
+          <g fill="none" stroke="#77724f" stroke-linecap="round">
+            <path d="M19 187C27 139 35 91 60 23M21 164C13 129 8 94 7 66M30 142c18-31 38-59 68-83" stroke-width="1.8" />
+            <path d="M60 23c9-8 14-15 17-22m1 28c9-6 15-12 19-20M8 66C5 56 1 50-6 45m14 40c-6-8-12-12-20-14" stroke-width="1.1" />
+          </g>
+          <g fill="#8b4c4e">
+            <circle cx="78" cy="2" r="1.8" /><circle cx="84" cy="-4" r="1.5" /><circle cx="90" cy="-8" r="1.4" />
+            <circle cx="98" cy="25" r="1.7" /><circle cx="104" cy="19" r="1.4" /><circle cx="108" cy="13" r="1.2" />
+            <circle cx="-6" cy="45" r="1.7" /><circle cx="-11" cy="39" r="1.4" />
+          </g>
+          <use href="#landing-spray" x="49" y="-1" width="57" height="100" />
+          <use href="#landing-spray" x="-18" y="20" width="43" height="75" />
+          <use href="#landing-blossom" x="73" y="7" width="9" height="9" />
+          <use href="#landing-blossom" x="90" y="23" width="8" height="8" />
+          <use href="#landing-blossom" x="-8" y="38" width="8" height="8" />
+          <use href="#landing-blossom" x="16" y="30" width="7" height="7" />
+          <use href="#landing-rose" x="-11" y="61" width="58" height="58" />
+          <use href="#landing-rose" x="26" y="104" width="57" height="57" />
+          <use href="#landing-rose" x="-8" y="145" width="49" height="49" />
+          <use href="#landing-cream-rose" x="16" y="83" width="43" height="43" />
+          <use href="#landing-cream-rose" x="45" y="137" width="35" height="35" />
+          <g fill="#8a2434" stroke="#5d1926" stroke-width="0.7">
+            <path d="M72 38c-8-10-2-18 4-18 7 1 8 9 2 18l-3 4Z" /><path d="M87 31c-6-9 0-16 6-15 6 2 5 10-1 16l-3 3Z" />
+          </g>
+        </svg>
+        </template>
+        <img class="landing-bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
+        <img class="landing-bouquet right" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
+        <h1 class="landing-names"><span>Tuấn Anh</span><span class="amp">&amp;</span><span>Hồng Thư</span></h1>
+        <span class="landing-divider" aria-hidden="true"></span>
+        <p class="landing-date">23 tháng 1, 2027</p>
+        <p class="landing-invite">Thân Mời</p>
+        <button class="landing-open" id="landing-open" type="button">
+          <span class="landing-open-label">Mở thiệp</span>
+          <span class="landing-open-shine" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <main class="invitation" id="invitation" hidden>
+      <header class="paper-section cover" id="cover">
+        <p class="save-date">Save the date</p>
+        <p class="cover-date">Thứ bảy · 23 tháng 1 · 2027</p>
+        <div class="envelope-scene" aria-label="Tấm ảnh cưới được đặt trong phong bì đỏ">
+          <div class="portrait">
+            <img
+              src="assets/photos/envelope/1.jpg"
+              alt="Ảnh cưới của Tuấn Anh và Hồng Thư"
+            />
+          </div>
+          <img class="bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
+          <div class="envelope-back"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-front"></div>
+          <div class="wax-seal" aria-hidden="true">
+            <svg class="wax-heart" viewBox="0 0 48 52">
+              <path class="wax-heart-shadow" d="M24 44 7.4 26.6C-1.7 16.8 3.2 5.5 12.4 5.5c5.1 0 9.2 3.1 11.6 8.2 2.3-5.1 6.5-8.2 11.6-8.2 9.2 0 14.1 11.3 5 21.1L24 44Z" />
+              <path class="wax-heart-engraving" d="M24 43 7.4 25.6C-1.7 15.8 3.2 4.5 12.4 4.5c5.1 0 9.2 3.1 11.6 8.2 2.3-5.1 6.5-8.2 11.6-8.2 9.2 0 14.1 11.3 5 21.1L24 43Z" />
+              <path class="wax-heart-highlight" d="M24 40 9.2 24.5C1.7 16.4 5.7 7.5 12.5 7.5c4.1 0 7.3 2.8 9.4 7.4" />
+            </svg>
+          </div>
+        </div>
+        <h1 class="cover-names"><span>Tuấn Anh</span><span class="amp">&amp;</span><span>Hồng Thư</span></h1>
+        <div class="cover-actions">
+          <button class="open-button" id="open-invitation" type="button">Mở thiệp</button>
+          <a class="cover-album-link" href="#album">XEM ẢNH CƯỚI</a>
+        </div>
+      </header>
+
+      <section class="paper-section invitation-details" id="details">
+        <div class="details-card">
+          <h2 class="heading">Thông tin lễ cưới</h2>
+          <div class="parents">
+            <div class="parent-family">
+              Ông Bà
+              <strong>Lê Hồng Tin</strong>
+              <strong>Hồ Thị Lợi</strong>
+              <span class="family-address">112 Thăng Long, Hòa Cường, Đà Nẵng</span>
+            </div>
+            <div class="parent-family">
+              Ông Bà
+              <strong>Nguyễn Đức May</strong>
+              <strong>Trương Thị Chi Linh</strong>
+              <span class="family-address">462 Hoàng Văn Thái, Hòa Khánh Nam, Đà Nẵng</span>
+            </div>
+          </div>
+          <p class="invitation-note">Trân trọng báo tin lễ thành hôn của con chúng tôi</p>
+          <div class="couple-names">
+            <div class="couple-person">
+              <h3>Lê Tuấn Anh</h3>
+              <p>Quý Nam</p>
+            </div>
+            <span class="couple-and" aria-hidden="true">&amp;</span>
+            <div class="couple-person">
+              <h3>Nguyễn Thị Hồng Thư</h3>
+              <p>Thứ Nữ</p>
+            </div>
+          </div>
+          <div class="ceremony">
+            <p class="ceremony-title">Lễ thành hôn được cử hành tại tư gia</p>
+            <div class="date-mark">
+              <span class="time">Vào lúc<br /><strong>09:00</strong><br />Thứ bảy</span>
+              <span class="day-number">23</span>
+              <span class="month-year">Tháng<strong>01</strong>2027</span>
+            </div>
+            <p class="lunar-date">(TỨC NGÀY 16 THÁNG 12 NĂM BÍNH NGỌ)</p>
+          </div>
+        </div>
+        <img class="details-bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
+      </section>
+
+      <section class="paper-section album" id="album">
+        <h2 class="heading">Album Ảnh Cưới</h2>
+        <div class="carousel" aria-label="Album ảnh cưới">
+          <img class="carousel-side previous" id="carousel-previous-image" alt="" aria-hidden="true" />
+          <img class="carousel-side next" id="carousel-next-image" alt="" aria-hidden="true" />
+          <img
+            class="carousel-image"
+            id="carousel-image"
+            src="assets/photos/wedding/1.jpg"
+            alt="Ảnh cưới Tuấn Anh và Hồng Thư 1"
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            aria-label="Phóng to ảnh cưới"
+          />
+          <button class="carousel-arrow previous" id="previous-photo" type="button" aria-label="Ảnh trước">‹</button>
+          <button class="carousel-arrow next" id="next-photo" type="button" aria-label="Ảnh tiếp theo">›</button>
+          <p class="carousel-caption" id="carousel-caption">Những khoảnh khắc của chúng mình</p>
+          <div class="carousel-dots" id="carousel-dots" aria-label="Chọn ảnh"></div>
+        </div>
+      </section>
+      <dialog class="photo-viewer" id="photo-viewer" aria-label="Xem ảnh cưới">
+        <button class="photo-viewer-button photo-viewer-close" id="photo-viewer-close" type="button" aria-label="Đóng ảnh">×</button>
+        <button class="photo-viewer-button photo-viewer-previous" id="photo-viewer-previous" type="button" aria-label="Ảnh trước">‹</button>
+        <img class="photo-viewer-image" id="photo-viewer-image" alt="" />
+        <button class="photo-viewer-button photo-viewer-next" id="photo-viewer-next" type="button" aria-label="Ảnh tiếp theo">›</button>
+        <p class="photo-viewer-caption" id="photo-viewer-caption"></p>
+      </dialog>
+
+      <section class="paper-section reception" id="reception">
+        <div class="reception-card">
+          <h2 class="heading">Thông tin tiệc cưới</h2>
+          <p class="reception-time">Tiệc cưới sẽ diễn ra vào lúc</p>
+          <div class="date-mark">
+            <span class="time">Thứ<strong>Bảy</strong></span>
+            <span class="day-number">23</span>
+            <span class="month-year">Tháng<strong>01</strong>2027</span>
+          </div>
+          <p class="lunar-date">(TỨC NGÀY 16 THÁNG 12 NĂM BÍNH NGỌ)</p>
+          <div class="event-hours">
+            <div class="event-hour">Đón khách<strong>11:00</strong></div>
+            <div class="event-hour">Khai tiệc<strong>12:00</strong></div>
+          </div>
+          <div class="calendar">
+            <p class="calendar-title">Tháng 1 / 2027</p>
+            <div class="calendar-grid" id="calendar-grid" aria-label="Lịch tháng 1 năm 2027"></div>
+          </div>
+          <div class="calendar-actions">
+            <a class="text-link" id="calendar-link" href="#" download="Anh&amp;Thu_Wedding.ics">Thêm vào lịch</a>
+            <button class="outline-button" id="rsvp-open" type="button">Xác nhận tham dự</button>
+          </div>
+        </div>
+        <img class="reception-bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
+      </section>
+
+      <section class="paper-section venue" id="venue">
+        <h2 class="heading">Tiệc cưới sẽ tổ chức tại</h2>
+        <p class="venue-address">Tên nhà hàng / địa điểm tiệc cưới<br />Địa chỉ sẽ được cập nhật</p>
+        <a class="text-link" href="https://maps.google.com/?q=Ho+Chi+Minh+City" target="_blank" rel="noreferrer">Chỉ đường</a>
+        <div class="map-placeholder" role="img" aria-label="Vị trí tổ chức tiệc cưới trên bản đồ sẽ được cập nhật"></div>
+      </section>
+
+      <section class="paper-section dress-code">
+        <h2 class="heading">Dress code</h2>
+        <p>Trang phục dự tiệc · Thanh lịch, ấm áp</p>
+        <div class="color-swatches" aria-label="Màu sắc gợi ý">
+          <span class="swatch" style="background:#5a1927"></span>
+          <span class="swatch" style="background:#c5a38d"></span>
+          <span class="swatch" style="background:#e8dfd2"></span>
+          <span class="swatch" style="background:#837d70"></span>
+        </div>
+      </section>
+
+      <section class="paper-section schedule" id="schedule">
+        <h2 class="heading">Lịch trình ngày cưới</h2>
+        <ol class="timeline">
+          <li><time>17:00</time><span class="timeline-marker"></span><p>Đón khách</p></li>
+          <li><time>17:30</time><span class="timeline-marker"></span><p>Chụp ảnh lưu niệm</p></li>
+          <li><time>18:00</time><span class="timeline-marker"></span><p>Khai tiệc</p></li>
+          <li><time>18:30</time><span class="timeline-marker"></span><p>Nghi thức cưới</p></li>
+          <li><time>19:00</time><span class="timeline-marker"></span><p>Cắt bánh &amp; nâng ly</p></li>
+          <li><time>20:30</time><span class="timeline-marker"></span><p>Kết thúc tiệc</p></li>
+        </ol>
+      </section>
+
+      <section class="paper-section guestbook" id="guestbook">
+        <h2 class="heading">Sổ lưu bút</h2>
+        <form class="guestbook-form" id="guestbook-form">
+          <input name="name" aria-label="Tên của bạn" placeholder="Nhập tên của bạn" required />
+          <textarea name="message" aria-label="Lời chúc" placeholder="Gửi lời chúc đến cô dâu chú rể..." required></textarea>
+          <button type="submit">Gửi lời chúc</button>
+        </form>
+        <div class="wishes" id="wishes">
+          <article class="wish"><strong>Gia đình Tuấn Anh &amp; Hồng Thư</strong><p>Chúng mình rất mong được đón bạn trong ngày vui đặc biệt này.</p></article>
+        </div>
+      </section>
+
+      <dialog class="rsvp-dialog" id="rsvp-dialog">
+        <form id="rsvp-form">
+          <h2>Xác nhận tham dự</h2>
+          <p>Cho chúng mình biết bạn có thể đến chung vui nhé.</p>
+          <label for="rsvp-name">Tên của bạn</label>
+          <input id="rsvp-name" name="name" autocomplete="name" required />
+          <fieldset class="rsvp-attendance-fieldset">
+            <legend>Bạn sẽ đến chứ?</legend>
+            <div class="rsvp-attendance-options">
+              <label class="rsvp-attendance-choice">
+                <input type="radio" name="attendance" value="yes" checked />
+                Tôi sẽ đến
+              </label>
+              <label class="rsvp-attendance-choice">
+                <input type="radio" name="attendance" value="no" />
+                Rất tiếc, tôi không thể đến
+              </label>
+            </div>
+          </fieldset>
+          <div class="rsvp-guest-count" id="rsvp-guest-count">
+            <label for="rsvp-guests">Số lượng khách (bao gồm bạn)</label>
+            <div class="rsvp-guest-stepper">
+              <button id="rsvp-guests-decrease" type="button" aria-label="Giảm số lượng khách">−</button>
+              <input id="rsvp-guests" name="guests" type="number" min="1" step="1" value="1" required aria-label="Số lượng khách" />
+              <button id="rsvp-guests-increase" type="button" aria-label="Tăng số lượng khách">+</button>
+            </div>
+          </div>
+          <label for="rsvp-message">Lời nhắn cho cô dâu chú rể</label>
+          <textarea id="rsvp-message" name="message" maxlength="500" placeholder="Để lại lời nhắn (không bắt buộc)"></textarea>
+          <div class="dialog-actions">
+            <button class="outline-button" id="rsvp-cancel" type="button">Để sau</button>
+            <button class="open-button" type="submit">Gửi xác nhận</button>
+          </div>
+        </form>
+        <section class="rsvp-success" id="rsvp-success" aria-labelledby="rsvp-success-title" aria-live="polite" hidden>
+          <span class="rsvp-success-icon" aria-hidden="true">✓</span>
+          <h2 id="rsvp-success-title">Cảm ơn bạn!</h2>
+          <p>Rất mong được gặp bạn trong ngày trọng đại!</p>
+          <button class="outline-button" id="rsvp-success-close" type="button">Đóng</button>
+        </section>
+      </dialog>
+
+      <section class="paper-section gift">
+        <div class="gift-card">
+          <h2 class="heading">Hộp quà mừng</h2>
+          <div class="gift-icon" aria-hidden="true">♧</div>
+          <p>Món quà quý giá nhất là sự hiện diện và lời chúc phúc của bạn.</p>
+          <button class="outline-button" id="gift-button" type="button">Nhấn để mở</button>
+          <p class="gift-message" id="gift-message" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <footer class="closing">
+        <p>Sự hiện diện của bạn là niềm vui của chúng mình!</p>
+        <p class="closing-names">Tuấn Anh &amp; Hồng Thư</p>
+        <p class="image-credit">
+          Ảnh gốc Cổng Ngọ Môn: <a href="https://commons.wikimedia.org/wiki/File:Meridian_Gate_(Ng%E1%BB%8D_M%C3%B4n),_the_southern_entrance_to_the_Imperial_City,_as_viewed_from_the_flagpole_monument_side_(K%E1%BB%B3_%C4%90%C3%A0i).jpg" target="_blank" rel="noreferrer">ElonggnolE</a>,
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>; ảnh đã được chuyển thể thành tranh khắc.
+        </p>
+      </footer>
+    </main>
+
+    <audio id="background-music" src="assets/music/song.mp3" loop preload="none"></audio>
+    <button
+      class="music-toggle"
+      id="music-toggle"
+      type="button"
+      aria-label="Bật nhạc nền"
+      aria-pressed="false"
+      title="Bật nhạc nền"
+    >
+      <span aria-hidden="true">♫</span>
+    </button>
+    <p class="music-status" id="music-status" role="status" aria-live="polite"></p>
+
+    <script>
+      const weddingDate = new Date("2027-01-23T12:00:00+07:00");
+      const calendarGrid = document.getElementById("calendar-grid");
+      const weekDays = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+      const firstDay = (new Date(2027, 0, 1).getDay() + 6) % 7;
+      const daysInMonth = new Date(2027, 1, 0).getDate();
+
+      weekDays.forEach((day) => {
+        const cell = document.createElement("span");
+        cell.className = "weekday";
+        cell.textContent = day;
+        calendarGrid.append(cell);
+      });
+
+      for (let blank = 0; blank < firstDay; blank += 1) {
+        calendarGrid.append(document.createElement("span"));
+      }
+
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const cell = document.createElement("span");
+        cell.textContent = String(day);
+        if (day === weddingDate.getDate()) {
+          cell.className = "wedding-day";
+          cell.setAttribute("aria-label", "Ngày cưới");
+        }
+        calendarGrid.append(cell);
+      }
+
+      const formatCalendarDate = (date) =>
+        date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const escapeCalendarText = (text) =>
+        text.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
+      const calendarStart = formatCalendarDate(weddingDate);
+      const calendarEnd = formatCalendarDate(new Date(weddingDate.getTime() + 3 * 60 * 60 * 1000));
+      const calendarEvent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Tuan Anh and Hong Thu//Wedding Invitation//VI",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "UID:tuan-anh-hong-thu-wedding-20270123@wedding-invite",
+        `DTSTAMP:${formatCalendarDate(new Date())}`,
+        `DTSTART:${calendarStart}`,
+        `DTEND:${calendarEnd}`,
+        `SUMMARY:${escapeCalendarText("Lễ cưới Tuấn Anh & Hồng Thư")}`,
+        `DESCRIPTION:${escapeCalendarText("Trân trọng kính mời bạn đến chung vui cùng Tuấn Anh & Hồng Thư.")}`,
+        `LOCATION:${escapeCalendarText("Địa điểm tiệc cưới sẽ được cập nhật")}`,
+        "END:VEVENT",
+        "END:VCALENDAR",
+        "",
+      ].join("\r\n");
+      const calendarLink = document.getElementById("calendar-link");
+      calendarLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        const downloadUrl = URL.createObjectURL(new Blob([calendarEvent], { type: "text/calendar;charset=utf-8" }));
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = calendarLink.download;
+        document.body.append(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+      });
+
+      const photos = Array.from({ length: 12 }, (_, index) => ({
+        src: `assets/photos/wedding/${index + 1}.jpg`,
+        alt: `Ảnh cưới Tuấn Anh và Hồng Thư ${index + 1}`,
+        caption: "Những khoảnh khắc của chúng mình",
+      }));
+      let activePhoto = 0;
+      const carouselImage = document.getElementById("carousel-image");
+      const previousCarouselImage = document.getElementById("carousel-previous-image");
+      const nextCarouselImage = document.getElementById("carousel-next-image");
+      const carouselCaption = document.getElementById("carousel-caption");
+      const carouselDots = document.getElementById("carousel-dots");
+      const carousel = document.querySelector(".carousel");
+      const photoViewer = document.getElementById("photo-viewer");
+      const photoViewerImage = document.getElementById("photo-viewer-image");
+      const photoViewerCaption = document.getElementById("photo-viewer-caption");
+      let carouselTimer;
+      let transitionTimer;
+
+      function renderPhoto(index) {
+        const photo = photos[index];
+        carouselImage.src = photo.src;
+        carouselImage.alt = photo.alt;
+        previousCarouselImage.src = photos[(index - 1 + photos.length) % photos.length].src;
+        nextCarouselImage.src = photos[(index + 1) % photos.length].src;
+        carouselCaption.textContent = photo.caption;
+        [...carouselDots.children].forEach((dot, dotIndex) => {
+          dot.setAttribute("aria-current", String(dotIndex === index));
+        });
+      }
+
+      function finishCarouselTransition() {
+        if (!transitionTimer) return;
+        window.clearTimeout(transitionTimer);
+        transitionTimer = null;
+        carousel.classList.add("is-resetting");
+        carousel.classList.remove("is-turning-next", "is-turning-previous", "is-fading");
+        renderPhoto(activePhoto);
+        void carousel.offsetWidth;
+        carousel.classList.remove("is-resetting");
+      }
+
+      function showPhoto(index, direction = 0) {
+        if (transitionTimer) finishCarouselTransition();
+        const previousIndex = activePhoto;
+        activePhoto = (index + photos.length) % photos.length;
+        if (photoViewer.open) {
+          const photo = photos[activePhoto];
+          photoViewerImage.src = photo.src;
+          photoViewerImage.alt = photo.alt;
+          photoViewerCaption.textContent = photo.caption;
+          renderPhoto(activePhoto);
+          return;
+        }
+        if (activePhoto === previousIndex || !direction) {
+          renderPhoto(activePhoto);
+          if (activePhoto !== previousIndex) {
+            carousel.classList.add("is-fading");
+            transitionTimer = window.setTimeout(finishCarouselTransition, 240);
+          }
+          return;
+        }
+
+        carousel.classList.add(direction > 0 ? "is-turning-next" : "is-turning-previous");
+        transitionTimer = window.setTimeout(finishCarouselTransition, 720);
+      }
+
+      function openPhotoViewer() {
+        const photo = photos[activePhoto];
+        photoViewerImage.src = photo.src;
+        photoViewerImage.alt = photo.alt;
+        photoViewerCaption.textContent = photo.caption;
+        photoViewer.showModal();
+        document.getElementById("photo-viewer-close").focus();
+      }
+
+      function closePhotoViewer() {
+        photoViewer.close();
+      }
+
+      function restartCarouselTimer() {
+        window.clearInterval(carouselTimer);
+        carouselTimer = window.setInterval(() => {
+          if (!document.hidden && !photoViewer.open) showPhoto(activePhoto + 1, 1);
+        }, 3000);
+      }
+
+      photos.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.className = "carousel-dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Đến ảnh ${index + 1}`);
+        dot.addEventListener("click", () => {
+          const nextIndex = (activePhoto + 1) % photos.length;
+          const previousIndex = (activePhoto - 1 + photos.length) % photos.length;
+          showPhoto(index, index === nextIndex ? 1 : index === previousIndex ? -1 : 0);
+          restartCarouselTimer();
+        });
+        carouselDots.append(dot);
+      });
+      document.getElementById("previous-photo").addEventListener("click", () => {
+        showPhoto(activePhoto - 1, -1);
+        restartCarouselTimer();
+      });
+      document.getElementById("next-photo").addEventListener("click", () => {
+        showPhoto(activePhoto + 1, 1);
+        restartCarouselTimer();
+      });
+      carouselImage.addEventListener("click", openPhotoViewer);
+      carouselImage.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPhotoViewer();
+        }
+      });
+      document.getElementById("photo-viewer-close").addEventListener("click", closePhotoViewer);
+      document.getElementById("photo-viewer-previous").addEventListener("click", () => showPhoto(activePhoto - 1));
+      document.getElementById("photo-viewer-next").addEventListener("click", () => showPhoto(activePhoto + 1));
+      photoViewer.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closePhotoViewer();
+      });
+      photoViewer.addEventListener("click", (event) => {
+        if (event.target === photoViewer) closePhotoViewer();
+      });
+      photoViewer.addEventListener("close", restartCarouselTimer);
+      let touchStartX = null;
+      carousel.addEventListener("pointerdown", (event) => {
+        touchStartX = event.clientX;
+      });
+      carousel.addEventListener("pointerup", (event) => {
+        if (touchStartX === null) return;
+        const swipeDistance = event.clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(swipeDistance) > 45) {
+          const direction = swipeDistance < 0 ? 1 : -1;
+          showPhoto(activePhoto + direction, direction);
+          restartCarouselTimer();
+        }
+      });
+      carousel.addEventListener("pointercancel", () => {
+        touchStartX = null;
+      });
+      showPhoto(0);
+      restartCarouselTimer();
+
+      const fallingHearts = document.getElementById("falling-hearts");
+      const heartColors = ["#a8323b", "#ece4d8", "#c9a24a", "#7a1f26"];
+
+      for (let index = 0; index < 12; index += 1) {
+        const heart = document.createElement("span");
+        const duration = 18 + Math.random() * 8;
+        const sway = Math.random() * 60 - 30;
+        heart.className = "landing-heart";
+        heart.style.setProperty("--heart-left", `${Math.random() * 100}%`);
+        heart.style.setProperty("--heart-delay", `${-Math.random() * duration}s`);
+        heart.style.setProperty("--heart-duration", `${duration}s`);
+        heart.style.setProperty("--heart-size", `${12 + Math.random() * 12}px`);
+        heart.style.setProperty("--heart-sway", `${sway}px`);
+        heart.style.setProperty("--heart-color", heartColors[Math.floor(Math.random() * heartColors.length)]);
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.setAttribute("viewBox", "0 0 24 24");
+        icon.setAttribute("fill", "currentColor");
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
+        icon.append(path);
+        heart.append(icon);
+        fallingHearts.append(heart);
+      }
+
+      const landingScreen = document.getElementById("landing-screen");
+      const invitation = document.getElementById("invitation");
+      const backgroundMusic = document.getElementById("background-music");
+      const musicToggle = document.getElementById("music-toggle");
+      const musicStatus = document.getElementById("music-status");
+
+      function updateMusicControl(isPlaying) {
+        musicToggle.classList.toggle("is-playing", isPlaying);
+        musicToggle.setAttribute("aria-pressed", String(isPlaying));
+        const label = isPlaying ? "Tắt nhạc nền" : "Bật nhạc nền";
+        musicToggle.setAttribute("aria-label", label);
+        musicToggle.title = label;
+      }
+
+      async function setBackgroundMusicEnabled(enabled) {
+        if (!enabled) {
+          backgroundMusic.pause();
+          updateMusicControl(false);
+          musicStatus.textContent = "";
+          return;
+        }
+
+        if (window.location.protocol === "file:") {
+          updateMusicControl(false);
+          musicStatus.textContent = "";
+          return;
+        }
+
+        try {
+          await backgroundMusic.play();
+          updateMusicControl(true);
+          musicStatus.textContent = "";
+        } catch (error) {
+          updateMusicControl(false);
+          musicStatus.textContent = "Không thể phát nhạc nền. Hãy thử bật lại.";
+          console.error("Không thể phát nhạc nền:", error);
+        }
+      }
+
+      musicToggle.addEventListener("click", () => {
+        void setBackgroundMusicEnabled(backgroundMusic.paused);
+      });
+      backgroundMusic.addEventListener("play", () => updateMusicControl(true));
+      backgroundMusic.addEventListener("pause", () => updateMusicControl(false));
+      backgroundMusic.addEventListener("error", () => {
+        updateMusicControl(false);
+        musicStatus.textContent = "Không tải được tệp nhạc nền.";
+      });
+
+      document.getElementById("landing-open").addEventListener("click", (event) => {
+        const openButton = event.currentTarget;
+        openButton.disabled = true;
+        openButton.classList.add("is-opening");
+        void setBackgroundMusicEnabled(true);
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion) {
+          const landingBounds = landingScreen.getBoundingClientRect();
+          document.querySelectorAll(".landing-bouquet").forEach((flower, index) => {
+            const bounds = flower.getBoundingClientRect();
+            for (let trail = 0; trail < 2; trail += 1) {
+              const echo = document.createElement("img");
+              echo.className = `landing-flower-echo ${flower.classList.contains("right") ? "right" : "left"}`;
+              echo.src = flower.currentSrc || flower.src;
+              echo.alt = "";
+              echo.setAttribute("aria-hidden", "true");
+              echo.style.left = `${bounds.left - landingBounds.left}px`;
+              echo.style.top = `${bounds.top - landingBounds.top}px`;
+              echo.style.width = `${bounds.width}px`;
+              echo.style.animationDelay = `${index * 35 + trail * 95}ms`;
+              landingScreen.append(echo);
+            }
+          });
+
+          for (let index = 0; index < 18; index += 1) {
+            const heart = document.createElement("span");
+            const angle = (Math.PI * 2 * index) / 18 + (Math.random() - 0.5) * 0.35;
+            const distance = 95 + Math.random() * 185;
+            heart.className = "landing-heart-burst";
+            heart.style.setProperty("--burst-x", `${Math.cos(angle) * distance}px`);
+            heart.style.setProperty("--burst-y", `${Math.sin(angle) * distance}px`);
+            heart.style.setProperty("--heart-color", heartColors[Math.floor(Math.random() * heartColors.length)]);
+            heart.style.setProperty("--heart-size", `${10 + Math.random() * 17}px`);
+            const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            icon.setAttribute("viewBox", "0 0 24 24");
+            icon.setAttribute("fill", "currentColor");
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
+            icon.append(path);
+            heart.append(icon);
+            fallingHearts.append(heart);
+          }
+        }
+        landingScreen.classList.add("is-leaving");
+        const transitionDuration = reduceMotion ? 0 : 950;
+
+        window.setTimeout(() => {
+          landingScreen.hidden = true;
+          fallingHearts.querySelectorAll(".landing-heart-burst").forEach((heart) => heart.remove());
+          landingScreen.querySelectorAll(".landing-flower-echo").forEach((flower) => flower.remove());
+          invitation.hidden = false;
+          invitation.classList.add("is-visible");
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }, transitionDuration);
+      });
+
+      document.getElementById("open-invitation").addEventListener("click", () => {
+        window.scrollTo({ top: document.getElementById("reception").offsetTop, behavior: "instant" });
+      });
+
+      const rsvpDialog = document.getElementById("rsvp-dialog");
+      const rsvpForm = document.getElementById("rsvp-form");
+      const rsvpSuccess = document.getElementById("rsvp-success");
+      const rsvpGuestCount = document.getElementById("rsvp-guest-count");
+      const rsvpGuests = document.getElementById("rsvp-guests");
+      const rsvpName = document.getElementById("rsvp-name");
+      rsvpName.addEventListener("invalid", () => {
+        rsvpName.setCustomValidity("Vui lòng nhập tên của bạn");
+      });
+      rsvpName.addEventListener("input", () => rsvpName.setCustomValidity(""));
+      const updateRsvpGuestCount = () => {
+        const attending = document.querySelector('input[name="attendance"]:checked').value === "yes";
+        rsvpGuestCount.hidden = !attending;
+        rsvpGuests.disabled = !attending;
+        document.getElementById("rsvp-guests-decrease").disabled = !attending;
+        document.getElementById("rsvp-guests-increase").disabled = !attending;
+      };
+
+      document.getElementById("rsvp-open").addEventListener("click", () => {
+        rsvpForm.hidden = false;
+        rsvpSuccess.hidden = true;
+        updateRsvpGuestCount();
+        rsvpDialog.showModal();
+      });
+      document.getElementById("rsvp-cancel").addEventListener("click", () => {
+        rsvpDialog.close();
+      });
+      document.getElementById("rsvp-success-close").addEventListener("click", () => rsvpDialog.close());
+      document.querySelectorAll('input[name="attendance"]').forEach((option) => {
+        option.addEventListener("change", updateRsvpGuestCount);
+      });
+      document.getElementById("rsvp-guests-decrease").addEventListener("click", () => {
+        rsvpGuests.value = String(Math.max(1, Number(rsvpGuests.value) - 1));
+      });
+      document.getElementById("rsvp-guests-increase").addEventListener("click", () => {
+        rsvpGuests.value = String(Math.max(1, Number(rsvpGuests.value) + 1));
+      });
+      rsvpForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        rsvpForm.hidden = true;
+        rsvpSuccess.hidden = false;
+        document.getElementById("rsvp-success-close").focus();
+      });
+
+      document.getElementById("guestbook-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const data = new FormData(form);
+        const wish = document.createElement("article");
+        const name = document.createElement("strong");
+        const message = document.createElement("p");
+        wish.className = "wish";
+        name.textContent = data.get("name").toString().trim();
+        message.textContent = data.get("message").toString().trim();
+        wish.append(name, message);
+        document.getElementById("wishes").prepend(wish);
+        form.reset();
+      });
+
+      document.getElementById("gift-button").addEventListener("click", () => {
+        document.getElementById("gift-message").textContent =
+          "Thông tin hộp quà mừng sẽ được cập nhật sau.";
+      });
+    </script>
+  </body>
+</html>

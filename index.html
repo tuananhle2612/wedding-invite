@@ -2685,6 +2685,7 @@
 
       <dialog class="rsvp-dialog" id="rsvp-dialog">
         <form id="rsvp-form">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
           <h2>Xác nhận tham dự</h2>
           <p>Cho chúng mình biết bạn có thể đến chung vui nhé.</p>
           <label for="rsvp-name">Tên của bạn</label>
@@ -2712,6 +2713,7 @@
           </div>
           <label for="rsvp-message">Lời nhắn cho cô dâu chú rể</label>
           <textarea id="rsvp-message" name="message" maxlength="500" placeholder="Để lại lời nhắn (không bắt buộc)"></textarea>
+          <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
           <div class="dialog-actions">
             <button class="outline-button" id="rsvp-cancel" type="button">Để sau</button>
             <button class="open-button" type="submit">Gửi xác nhận</button>
@@ -3137,11 +3139,36 @@
       document.getElementById("rsvp-guests-increase").addEventListener("click", () => {
         rsvpGuests.value = String(Math.max(1, Number(rsvpGuests.value) + 1));
       });
-      rsvpForm.addEventListener("submit", (event) => {
+      const RSVP_ENDPOINT = ""; // dán URL Web app của Google Apps Script (kết thúc bằng /exec) vào đây
+      const rsvpStatus = document.getElementById("rsvp-status");
+      rsvpForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-        rsvpForm.hidden = true;
-        rsvpSuccess.hidden = false;
-        document.getElementById("rsvp-success-close").focus();
+        const submitButton = rsvpForm.querySelector('button[type="submit"]');
+        const label = submitButton.textContent;
+        rsvpStatus.textContent = "";
+        if (!RSVP_ENDPOINT) {
+          rsvpStatus.textContent = "Chưa cấu hình địa chỉ nhận xác nhận.";
+          return;
+        }
+        submitButton.disabled = true;
+        submitButton.textContent = "Đang gửi...";
+        try {
+          await fetch(RSVP_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            body: new URLSearchParams(new FormData(rsvpForm)),
+          });
+          rsvpForm.hidden = true;
+          rsvpSuccess.hidden = false;
+          document.getElementById("rsvp-success-close").focus();
+          rsvpForm.reset();
+          updateRsvpGuestCount();
+        } catch (error) {
+          rsvpStatus.textContent = "Chưa gửi được, bạn kiểm tra mạng và thử lại nhé.";
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = label;
+        }
       });
 
       document.getElementById("guestbook-form").addEventListener("submit", (event) => {
