@@ -515,7 +515,7 @@
         width: min(100%, 420px);
         aspect-ratio: 333 / 384;
         height: auto;
-        margin: 106px auto 0;
+        margin: 76px auto 0;
       }
 
       .portrait {
@@ -722,7 +722,7 @@
         z-index: 7;
         display: grid;
         gap: 0;
-        margin: 78px 0 0;
+        margin: 58px 0 0;
         color: var(--wine-deep);
         font-family: "Viaoda Libre", "The Nautigal", cursive;
         font-size: clamp(48px, 7vw, 58px);
@@ -749,12 +749,13 @@
       }
 
       .cover-date {
-        margin: 21px 0 16px;
+        margin: 16px 0 24px;
         color: var(--wine);
         font-family: "Cormorant Garamond", "Times New Roman", serif;
         font-size: 18px;
         font-weight: 500;
         letter-spacing: 0.08em;
+        line-height: 1.4;
       }
 
       .cover-actions {
@@ -762,6 +763,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
+        margin-top: 20px;
       }
 
       .open-button {
@@ -1492,12 +1494,78 @@
       }
 
       .rsvp-dialog {
+        position: fixed;
         width: min(calc(100% - 32px), 440px);
         padding: 32px;
         border: 1px solid var(--line);
         color: var(--ink);
         background: var(--paper-light);
         box-shadow: 0 20px 70px rgba(30, 12, 15, 0.3);
+      }
+
+      .rsvp-dialog [hidden] {
+        display: none;
+      }
+
+      .rsvp-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: grid;
+        width: 32px;
+        min-height: 32px !important;
+        place-items: center;
+        padding: 0 !important;
+        border: 0;
+        border-radius: 50%;
+        color: var(--muted);
+        background: #f1f1f3;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .rsvp-success {
+        padding: 10px 0 2px;
+        text-align: center;
+      }
+
+      .rsvp-success-icon {
+        display: grid;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 16px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--wine);
+        background: rgba(96, 26, 40, 0.12);
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .rsvp-success h2 {
+        font-family: var(--sans);
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .rsvp-success p {
+        margin: 8px 0 24px;
+      }
+
+      .rsvp-success .outline-button {
+        min-width: 100px;
+        border: 0;
+        border-radius: 24px;
+        color: #fff9f1;
+        background: var(--wine);
+        font-family: var(--serif);
+        font-size: 13px;
+        letter-spacing: 0;
+      }
+
+      .rsvp-success .outline-button:hover {
+        color: #fff9f1;
+        background: var(--wine-deep);
       }
 
       .rsvp-dialog::backdrop {
@@ -1531,15 +1599,118 @@
       }
 
       .rsvp-dialog input,
-      .rsvp-dialog select {
+      .rsvp-dialog textarea {
         width: 100%;
-        min-height: 43px;
-        padding: 0 11px;
+        min-height: 46px;
+        padding: 11px;
         border: 1px solid var(--line);
         border-radius: 0;
         color: var(--ink);
         background: #fff;
         font-size: 12px;
+      }
+
+      .rsvp-dialog textarea {
+        min-height: 78px;
+        resize: vertical;
+      }
+
+      .rsvp-attendance-options {
+        display: grid;
+        gap: 8px;
+      }
+
+      .rsvp-attendance-fieldset {
+        min-width: 0;
+        margin: 13px 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .rsvp-attendance-fieldset legend {
+        margin-bottom: 6px;
+        color: var(--wine);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .rsvp-attendance-choice {
+        position: relative;
+        display: flex !important;
+        min-height: 48px;
+        align-items: center;
+        gap: 10px;
+        margin: 0 !important;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        color: var(--ink) !important;
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+      }
+
+      .rsvp-attendance-choice input {
+        width: 18px;
+        min-height: 18px;
+        margin: 0;
+        accent-color: var(--wine);
+      }
+
+      .rsvp-attendance-choice:has(input:checked) {
+        border-color: var(--wine);
+        background: #fbf4f0;
+      }
+
+      .rsvp-attendance-choice:has(input:focus-visible) {
+        outline: 3px solid rgba(181, 138, 85, 0.6);
+        outline-offset: 2px;
+      }
+
+      .rsvp-guest-count {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rsvp-guest-count[hidden] {
+        display: none;
+      }
+
+      .rsvp-guest-count label {
+        margin: 0;
+      }
+
+      .rsvp-guest-stepper {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .rsvp-guest-stepper button {
+        width: 34px;
+        min-height: 34px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--wine);
+        background: transparent;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .rsvp-guest-stepper input {
+        width: 42px;
+        min-height: 34px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
       }
 
       .rsvp-dialog .dialog-actions {
@@ -1929,7 +2100,7 @@
 
         .envelope-scene {
           width: min(100%, 420px);
-          margin-top: 58px;
+          margin-top: 38px;
         }
 
         .wax-seal {
@@ -1943,7 +2114,7 @@
         }
 
         .cover-names {
-          margin-top: 48px;
+          margin-top: 32px;
           font-size: clamp(42px, 12vw, 52px);
         }
 
@@ -2365,6 +2536,7 @@
     <main class="invitation" id="invitation" hidden>
       <header class="paper-section cover" id="cover">
         <p class="save-date">Save the date</p>
+        <p class="cover-date">Thứ bảy · 23 tháng 1 · 2027</p>
         <div class="envelope-scene" aria-label="Tấm ảnh cưới được đặt trong phong bì đỏ">
           <div class="portrait">
             <img
@@ -2385,7 +2557,6 @@
           </div>
         </div>
         <h1 class="cover-names"><span>Tuấn Anh</span><span class="amp">&amp;</span><span>Hồng Thư</span></h1>
-        <p class="cover-date">Thứ bảy · 23 tháng 1 · 2027</p>
         <div class="cover-actions">
           <button class="open-button" id="open-invitation" type="button">Mở thiệp</button>
           <a class="cover-album-link" href="#album">XEM ẢNH CƯỚI</a>
@@ -2482,7 +2653,7 @@
             <div class="calendar-grid" id="calendar-grid" aria-label="Lịch tháng 1 năm 2027"></div>
           </div>
           <div class="calendar-actions">
-            <a class="text-link" id="calendar-link" target="_blank" rel="noreferrer">Thêm vào lịch</a>
+            <a class="text-link" id="calendar-link" href="#" download="Anh&amp;Thu_Wedding.ics">Thêm vào lịch</a>
             <button class="outline-button" id="rsvp-open" type="button">Xác nhận tham dự</button>
           </div>
         </div>
@@ -2532,22 +2703,45 @@
       </section>
 
       <dialog class="rsvp-dialog" id="rsvp-dialog">
-        <h2>Xác nhận tham dự</h2>
-        <p>Cho chúng mình biết bạn có thể đến chung vui nhé.</p>
         <form id="rsvp-form">
+          <h2>Xác nhận tham dự</h2>
+          <p>Cho chúng mình biết bạn có thể đến chung vui nhé.</p>
           <label for="rsvp-name">Tên của bạn</label>
           <input id="rsvp-name" name="name" autocomplete="name" required />
-          <label for="rsvp-attendance">Bạn sẽ tham dự chứ?</label>
-          <select id="rsvp-attendance" name="attendance" required>
-            <option value="yes">Có, mình sẽ đến!</option>
-            <option value="no">Rất tiếc, mình không thể tham dự.</option>
-          </select>
+          <fieldset class="rsvp-attendance-fieldset">
+            <legend>Bạn sẽ đến chứ?</legend>
+            <div class="rsvp-attendance-options">
+              <label class="rsvp-attendance-choice">
+                <input type="radio" name="attendance" value="yes" checked />
+                Tôi sẽ đến
+              </label>
+              <label class="rsvp-attendance-choice">
+                <input type="radio" name="attendance" value="no" />
+                Rất tiếc, tôi không thể đến
+              </label>
+            </div>
+          </fieldset>
+          <div class="rsvp-guest-count" id="rsvp-guest-count">
+            <label for="rsvp-guests">Số lượng khách (bao gồm bạn)</label>
+            <div class="rsvp-guest-stepper">
+              <button id="rsvp-guests-decrease" type="button" aria-label="Giảm số lượng khách">−</button>
+              <input id="rsvp-guests" name="guests" type="number" min="1" step="1" value="1" required aria-label="Số lượng khách" />
+              <button id="rsvp-guests-increase" type="button" aria-label="Tăng số lượng khách">+</button>
+            </div>
+          </div>
+          <label for="rsvp-message">Lời nhắn cho cô dâu chú rể</label>
+          <textarea id="rsvp-message" name="message" maxlength="500" placeholder="Để lại lời nhắn (không bắt buộc)"></textarea>
           <div class="dialog-actions">
             <button class="outline-button" id="rsvp-cancel" type="button">Để sau</button>
             <button class="open-button" type="submit">Gửi xác nhận</button>
           </div>
-          <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
         </form>
+        <section class="rsvp-success" id="rsvp-success" aria-labelledby="rsvp-success-title" aria-live="polite" hidden>
+          <span class="rsvp-success-icon" aria-hidden="true">✓</span>
+          <h2 id="rsvp-success-title">Cảm ơn bạn!</h2>
+          <p>Rất mong được gặp bạn trong ngày trọng đại!</p>
+          <button class="outline-button" id="rsvp-success-close" type="button">Đóng</button>
+        </section>
       </dialog>
 
       <section class="paper-section gift">
@@ -2611,17 +2805,42 @@
         calendarGrid.append(cell);
       }
 
-      const calendarStart = new Date(weddingDate.getTime()).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-      const calendarEnd = new Date(weddingDate.getTime() + 3 * 60 * 60 * 1000).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-      const calendarDetails = new URLSearchParams({
-        action: "TEMPLATE",
-        text: "Lễ cưới Tuấn Anh & Hồng Thư",
-        dates: `${calendarStart}/${calendarEnd}`,
-        details: "Trân trọng kính mời bạn đến chung vui cùng Tuấn Anh & Hồng Thư.",
-        location: "Địa điểm tiệc cưới sẽ được cập nhật",
+      const formatCalendarDate = (date) =>
+        date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const escapeCalendarText = (text) =>
+        text.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
+      const calendarStart = formatCalendarDate(weddingDate);
+      const calendarEnd = formatCalendarDate(new Date(weddingDate.getTime() + 3 * 60 * 60 * 1000));
+      const calendarEvent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Tuan Anh and Hong Thu//Wedding Invitation//VI",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "UID:tuan-anh-hong-thu-wedding-20270123@wedding-invite",
+        `DTSTAMP:${formatCalendarDate(new Date())}`,
+        `DTSTART:${calendarStart}`,
+        `DTEND:${calendarEnd}`,
+        `SUMMARY:${escapeCalendarText("Lễ cưới Tuấn Anh & Hồng Thư")}`,
+        `DESCRIPTION:${escapeCalendarText("Trân trọng kính mời bạn đến chung vui cùng Tuấn Anh & Hồng Thư.")}`,
+        `LOCATION:${escapeCalendarText("Địa điểm tiệc cưới sẽ được cập nhật")}`,
+        "END:VEVENT",
+        "END:VCALENDAR",
+        "",
+      ].join("\r\n");
+      const calendarLink = document.getElementById("calendar-link");
+      calendarLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        const downloadUrl = URL.createObjectURL(new Blob([calendarEvent], { type: "text/calendar;charset=utf-8" }));
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = calendarLink.download;
+        document.body.append(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
       });
-      document.getElementById("calendar-link").href =
-        `https://calendar.google.com/calendar/render?${calendarDetails.toString()}`;
 
       const photos = Array.from({ length: 12 }, (_, index) => ({
         src: `assets/photos/wedding/${index + 1}.jpg`,
@@ -2898,20 +3117,51 @@
 
       document.getElementById("open-invitation").addEventListener("click", () => {
         document.getElementById("cover").classList.add("is-open");
-        window.scrollTo({ top: document.getElementById("details").offsetTop, behavior: "instant" });
+        window.scrollTo({ top: document.getElementById("reception").offsetTop, behavior: "instant" });
       });
 
       const rsvpDialog = document.getElementById("rsvp-dialog");
-      document.getElementById("rsvp-open").addEventListener("click", () => rsvpDialog.showModal());
-      document.getElementById("rsvp-cancel").addEventListener("click", () => rsvpDialog.close());
-      document.getElementById("rsvp-form").addEventListener("submit", (event) => {
+      const rsvpForm = document.getElementById("rsvp-form");
+      const rsvpSuccess = document.getElementById("rsvp-success");
+      const rsvpGuestCount = document.getElementById("rsvp-guest-count");
+      const rsvpGuests = document.getElementById("rsvp-guests");
+      const rsvpName = document.getElementById("rsvp-name");
+      rsvpName.addEventListener("invalid", () => {
+        rsvpName.setCustomValidity("Vui lòng nhập tên của bạn");
+      });
+      rsvpName.addEventListener("input", () => rsvpName.setCustomValidity(""));
+      const updateRsvpGuestCount = () => {
+        const attending = document.querySelector('input[name="attendance"]:checked').value === "yes";
+        rsvpGuestCount.hidden = !attending;
+        rsvpGuests.disabled = !attending;
+        document.getElementById("rsvp-guests-decrease").disabled = !attending;
+        document.getElementById("rsvp-guests-increase").disabled = !attending;
+      };
+
+      document.getElementById("rsvp-open").addEventListener("click", () => {
+        rsvpForm.hidden = false;
+        rsvpSuccess.hidden = true;
+        updateRsvpGuestCount();
+        rsvpDialog.showModal();
+      });
+      document.getElementById("rsvp-cancel").addEventListener("click", () => {
+        rsvpDialog.close();
+      });
+      document.getElementById("rsvp-success-close").addEventListener("click", () => rsvpDialog.close());
+      document.querySelectorAll('input[name="attendance"]').forEach((option) => {
+        option.addEventListener("change", updateRsvpGuestCount);
+      });
+      document.getElementById("rsvp-guests-decrease").addEventListener("click", () => {
+        rsvpGuests.value = String(Math.max(1, Number(rsvpGuests.value) - 1));
+      });
+      document.getElementById("rsvp-guests-increase").addEventListener("click", () => {
+        rsvpGuests.value = String(Math.max(1, Number(rsvpGuests.value) + 1));
+      });
+      rsvpForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const guestName = formData.get("name").toString().trim();
-        const attending = formData.get("attendance") === "yes";
-        document.getElementById("rsvp-status").textContent = attending
-          ? `Cảm ơn ${guestName}! Chúng mình rất mong được gặp bạn.`
-          : `Cảm ơn ${guestName} đã hồi âm. Chúng mình sẽ nhớ bạn!`;
+        rsvpForm.hidden = true;
+        rsvpSuccess.hidden = false;
+        document.getElementById("rsvp-success-close").focus();
       });
 
       document.getElementById("guestbook-form").addEventListener("submit", (event) => {
