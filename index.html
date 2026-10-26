@@ -4241,8 +4241,8 @@
           return;
         }
         const token = window.prompt(guestbookText(
-          "Nhập mã PIN quản trị gồm 6 chữ số:",
-          "Enter the 6-digit guestbook admin PIN:",
+          "Nhập mã PIN quản trị:",
+          "Enter the guestbook admin PIN:",
         ));
         if (!token) return;
         if (!/^\d{6}$/.test(token)) {
