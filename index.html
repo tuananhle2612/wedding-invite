@@ -431,6 +431,36 @@
         outline-offset: 4px;
       }
 
+      .language-toggle {
+        position: fixed;
+        z-index: 50;
+        right: calc(80px + env(safe-area-inset-right));
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        width: 52px;
+        height: 52px;
+        border: 1px solid rgba(255, 244, 227, 0.76);
+        border-radius: 50%;
+        color: #fff8ef;
+        background: var(--wine);
+        box-shadow: 0 5px 18px rgba(48, 16, 21, 0.3);
+        cursor: pointer;
+        font-family: var(--sans);
+        font-size: 12px;
+        font-weight: 600;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .language-toggle:hover {
+        background: #7b2631;
+        box-shadow: 0 7px 21px rgba(48, 16, 21, 0.36);
+        transform: translateY(-2px);
+      }
+
+      .language-toggle:focus-visible {
+        outline: 3px solid #d3b176;
+        outline-offset: 4px;
+      }
+
       .music-toggle::after {
         position: absolute;
         width: 28px;
@@ -2074,9 +2104,18 @@
         animation: gift-envelope-interact-front 520ms ease-in-out infinite alternate;
       }
 
+      .gift-envelope-trigger:focus-visible .gift-envelope-back,
+      .gift-envelope-trigger:active .gift-envelope-back {
+        animation: gift-envelope-interact-back 520ms ease-in-out infinite alternate;
+      }
+
       @media (hover: hover) and (pointer: fine) {
         .gift-envelope-trigger:hover .gift-envelope-front {
           animation: gift-envelope-interact-front 520ms ease-in-out infinite alternate;
+        }
+
+        .gift-envelope-trigger:hover .gift-envelope-back {
+          animation: gift-envelope-interact-back 520ms ease-in-out infinite alternate;
         }
       }
 
@@ -2086,6 +2125,15 @@
         }
         to {
           transform: translateY(-10px) rotate(-7deg) scale(1.12);
+        }
+      }
+
+      @keyframes gift-envelope-interact-back {
+        from {
+          transform: translateY(2px) rotate(12deg);
+        }
+        to {
+          transform: translateY(-5px) rotate(8deg);
         }
       }
 
@@ -2364,9 +2412,9 @@
 
       .closing {
         padding: 34px 24px 40px;
-        color: #f6eadd;
+        color: var(--wine);
         text-align: center;
-        background: var(--wine-deep);
+        background: transparent;
       }
 
       .closing p {
@@ -2377,15 +2425,19 @@
 
       .closing .closing-names {
         margin-top: 9px;
-        color: #fff7eb;
+        color: var(--wine-deep);
         font-size: 32px;
       }
 
       .closing .image-credit {
         margin-top: 20px;
-        color: rgba(246, 234, 221, 0.72);
+        color: var(--muted);
         font-family: var(--sans);
         font-size: 10px;
+      }
+
+      .closing .copyright {
+        margin-top: 4px;
       }
 
       .image-credit a {
@@ -3050,7 +3102,7 @@
             </div>
             <span class="couple-and" aria-hidden="true">&amp;</span>
             <div class="couple-person">
-              <h3>Nguyễn Thị Hồng Thư</h3>
+              <h3>Nguyễn Hồng Thư</h3>
               <p>Thứ Nữ</p>
             </div>
           </div>
@@ -3116,7 +3168,6 @@
       <section class="paper-section venue" id="venue">
         <h2 class="heading">Tiệc cưới sẽ tổ chức tại</h2>
         <p class="venue-address" id="venue-address">
-          Tiệc cưới · 11:00<br />
           <span id="venue-location"><strong>Nhà Hàng MIKADO, Tầng 6, Sảnh D</strong><br />
             487 Nguyễn Tất Thành, Thanh Khê, Đà Nẵng</span>
         </p>
@@ -3190,11 +3241,11 @@
             <div class="rsvp-attendance-options">
               <label class="rsvp-attendance-choice">
                 <input type="radio" name="attendance" value="yes" checked />
-                Tôi sẽ đến
+                <span>Tôi sẽ đến</span>
               </label>
               <label class="rsvp-attendance-choice">
                 <input type="radio" name="attendance" value="no" />
-                Rất tiếc, tôi không thể đến
+                <span>Rất tiếc, tôi không thể đến</span>
               </label>
             </div>
           </fieldset>
@@ -3300,21 +3351,21 @@
                 <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M8 2.5v7m0 0 2.7-2.7M8 9.5 5.3 6.8M3 10.5v2h10v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                Lưu QR
+                <span>Lưu QR</span>
               </a>
             </section>
             <section class="gift-account" aria-labelledby="gift-bride-name">
-              <h3 id="gift-bride-name">Cô dâu · Nguyễn Thị Hồng Thư</h3>
+              <h3 id="gift-bride-name">Cô dâu · Nguyễn Hồng Thư</h3>
               <a class="gift-qr-frame" href="assets/photos/qrcode/qrcode_codau.jpg" target="_blank" rel="noreferrer" aria-label="Mở mã QR Vietcombank của cô dâu">
                 <img class="gift-qr-image bride" src="assets/photos/qrcode/qrcode_codau.jpg" alt="Mã QR Vietcombank của cô dâu" />
               </a>
               <p class="gift-account-bank">Vietcombank</p>
-              <p class="gift-account-owner">NGUYỄN THỊ HỒNG THƯ</p>
+              <p class="gift-account-owner">NGUYỄN HỒNG THƯ</p>
               <a class="gift-qr-download" href="assets/photos/qrcode/qrcode_codau.jpg" download="QR_Co_Dau.jpg">
                 <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M8 2.5v7m0 0 2.7-2.7M8 9.5 5.3 6.8M3 10.5v2h10v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                Lưu QR
+                <span>Lưu QR</span>
               </a>
             </section>
           </div>
@@ -3322,16 +3373,24 @@
       </dialog>
 
       <footer class="closing">
-        <p>Sự hiện diện của bạn là niềm vui của chúng mình!</p>
+        <p>Sự hiện diện của bạn là niềm vinh hạnh của gia đình chúng tôi!</p>
         <p class="closing-names">Tuấn Anh &amp; Hồng Thư</p>
         <p class="image-credit">
           Ảnh gốc Cổng Ngọ Môn: <a href="https://commons.wikimedia.org/wiki/File:Meridian_Gate_(Ng%E1%BB%8D_M%C3%B4n),_the_southern_entrance_to_the_Imperial_City,_as_viewed_from_the_flagpole_monument_side_(K%E1%BB%B3_%C4%90%C3%A0i).jpg" target="_blank" rel="noreferrer">ElonggnolE</a>,
           <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>; ảnh đã được chuyển thể thành tranh khắc.
         </p>
+        <p class="image-credit copyright">Bản quyền thuộc: chungdoi.com</p>
       </footer>
     </main>
 
     <audio id="background-music" src="assets/music/song.mp3" loop preload="none"></audio>
+    <button
+      class="language-toggle"
+      id="language-toggle"
+      type="button"
+      aria-label="Switch to English"
+      title="Switch to English"
+    >EN</button>
     <button
       class="music-toggle"
       id="music-toggle"
@@ -3347,6 +3406,195 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
       const weddingDate = new Date("2027-01-23T12:00:00+07:00");
+      let currentLanguage = "vi";
+      const originalMarkup = new WeakMap();
+      const originalAttributes = new WeakMap();
+      const englishMarkup = [
+        [".landing-date", "January 23, 2027"],
+        [".landing-invite", "You are invited"],
+        [".landing-open-label", "Open invitation"],
+        [".cover-date", "Saturday · January 23 · 2027"],
+        [".cover-actions .open-button", "Open invitation"],
+        [".cover-album-link", "VIEW WEDDING PHOTOS"],
+        ["#details .heading", "Wedding Ceremony"],
+        [".parent-family:first-child", "Mr. and Mrs.<br /><strong>Lê Hồng Tin</strong><strong>Hồ Thị Lợi</strong><span class=\"family-address\">112 Thăng Long, Hòa Cường, Đà Nẵng</span>"],
+        [".parent-family:last-child", "Mr. and Mrs.<br /><strong>Nguyễn Đức May</strong><strong>Trương Thị Chi Linh</strong><span class=\"family-address\">462 Hoàng Văn Thái, Hòa Khánh Nam, Đà Nẵng</span>"],
+        [".invitation-note", "We are delighted to announce the marriage of our children"],
+        ["#details .couple-person:first-child p", "Groom"],
+        ["#details .couple-person:last-child p", "Bride"],
+        [".ceremony-title", "The wedding ceremony will be held at the family home"],
+        ["#details .date-mark .time", "At<br /><strong>09:00</strong><br />Saturday"],
+        ["#details .date-mark .month-year", "January<strong>01</strong>2027"],
+        ["#details .lunar-date", "(16TH DAY OF THE 12TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
+        ["#album > .heading", "Wedding Photo Album"],
+        ["#reception .heading", "Wedding Reception"],
+        [".reception-time", "The reception will begin at"],
+        ["#reception .date-mark .time", "Saturday"],
+        ["#reception .date-mark .month-year", "January<strong>01</strong>2027"],
+        ["#reception .lunar-date", "(16TH DAY OF THE 12TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
+        ["#reception .event-hour:first-child", "Guest arrival<strong>11:00</strong>"],
+        ["#reception .event-hour:last-child", "Reception begins<strong>12:00</strong>"],
+        [".calendar-title", "January 2027"],
+        ["#calendar-link", "Add to calendar"],
+        ["#rsvp-open", "RSVP"],
+        ["#venue .heading", "Wedding Reception Venue"],
+        ["#venue-location", "<strong>MIKADO Restaurant, Floor 6, Hall D</strong><br />487 Nguyễn Tất Thành, Thanh Khê, Đà Nẵng"],
+        ["#venue-directions", "Get directions"],
+        [".dress-code .heading", "Dress Code"],
+        [".dress-code > p", "Attire · Elegant and warm"],
+        [".schedule .heading", "Wedding Day Schedule"],
+        [".timeline li:nth-child(1) p", "Guest arrival"],
+        [".timeline li:nth-child(2) p", "Reception begins"],
+        [".timeline li:nth-child(3) p", "Wedding ceremony"],
+        [".timeline li:nth-child(4) p", "Cake cutting & toast"],
+        [".timeline li:nth-child(5) p", "Reception concludes"],
+        [".guestbook .heading", "Guestbook"],
+        [".guestbook-form button[type=\"submit\"]", "Send your wishes"],
+        [".wishes .wish strong", "The family of Tuấn Anh & Hồng Thư"],
+        [".wishes .wish p", "We look forward to celebrating this special day with you."],
+        ["#rsvp-form h2", "RSVP"],
+        ["#rsvp-form > p", "Please let us know if you can join us."],
+        ["label[for=\"rsvp-name\"]", "Your name"],
+        [".rsvp-attendance-fieldset legend", "Will you attend?"],
+        [".rsvp-attendance-choice:first-child span", "Yes, I will attend"],
+        [".rsvp-attendance-choice:last-child span", "Sorry, I can't make it"],
+        ["label[for=\"rsvp-guests\"]", "Number of guests (including you)"],
+        ["label[for=\"rsvp-message\"]", "Message for the couple"],
+        ["#rsvp-cancel", "Maybe later"],
+        ["#rsvp-form button[type=\"submit\"]", "Send RSVP"],
+        ["#rsvp-success-title", "Thank you!"],
+        [".rsvp-success > p", "We look forward to celebrating with you!"],
+        ["#rsvp-success-close", "Close"],
+        [".gift-card .heading", "Wedding Gift"],
+        [".gift-card > p", "Your presence and heartfelt wishes are the most precious gifts."],
+        ["#gift-button", "Open"],
+        ["#gift-dialog-title", "Wedding Gift"],
+        ["#gift-groom-name", "Groom · Lê Tuấn Anh"],
+        ["#gift-bride-name", "Bride · Nguyễn Hồng Thư"],
+        [".gift-account[aria-labelledby=\"gift-groom-name\"] .gift-account-owner", "LÊ TUẤN ANH"],
+        [".gift-account[aria-labelledby=\"gift-bride-name\"] .gift-account-owner", "NGUYỄN HỒNG THƯ"],
+        [".gift-qr-download span", "Save QR code"],
+        [".closing > p:first-child", "Your presence is an honor to our family!"],
+        [".closing .image-credit:not(.copyright)", "Original image of the Meridian Gate: <a href=\"https://commons.wikimedia.org/wiki/File:Meridian_Gate_(Ng%E1%BB%8D_M%C3%B4n),_the_southern_entrance_to_the_Imperial_City,_as_viewed_from_the_flagpole_monument_side_(K%E1%BB%B3_%C4%90%C3%A0i).jpg\" target=\"_blank\" rel=\"noreferrer\">ElonggnolE</a>, <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noreferrer\">CC BY-SA 4.0</a>; adapted as an engraved illustration."],
+        [".closing .copyright", "Copyright: chungdoi.com"],
+      ];
+      const englishAttributes = [
+        [".landing-screen", "aria-label", "Wedding invitation"],
+        [".envelope-scene", "aria-label", "A wedding photo nestled inside a red envelope"],
+        [".portrait img", "alt", "Wedding photo of Tuấn Anh and Hồng Thư"],
+        ["#venue-map", "title", "Map to MIKADO Restaurant, Da Nang"],
+        ["#carousel-swiper", "aria-label", "Wedding photo album"],
+        ["#previous-photo", "aria-label", "Previous photo"],
+        ["#next-photo", "aria-label", "Next photo"],
+        ["#carousel-dots", "aria-label", "Choose a photo"],
+        ["#photo-viewer", "aria-label", "View wedding photo"],
+        ["#photo-viewer-close", "aria-label", "Close photo"],
+        ["#photo-viewer-previous", "aria-label", "Previous photo"],
+        ["#photo-viewer-next", "aria-label", "Next photo"],
+        ["#calendar-grid", "aria-label", "January 2027 calendar"],
+        [".color-swatches", "aria-label", "Suggested colors"],
+        ["#rsvp-guests-decrease", "aria-label", "Decrease guest count"],
+        ["#rsvp-guests", "aria-label", "Number of guests"],
+        ["#rsvp-guests-increase", "aria-label", "Increase guest count"],
+        ["#rsvp-message", "placeholder", "Leave a message (optional)"],
+        [".guestbook-form input[name=\"name\"]", "aria-label", "Your name"],
+        [".guestbook-form input[name=\"name\"]", "placeholder", "Enter your name*"],
+        [".guestbook-form textarea[name=\"message\"]", "aria-label", "Your wishes"],
+        [".guestbook-form textarea[name=\"message\"]", "placeholder", "Write your wishes*"],
+        ["#wishes", "aria-label", "Guest messages"],
+        ["#gift-envelope-trigger", "aria-label", "Open the wedding gift and view QR codes"],
+        ["#gift-dialog-close", "aria-label", "Close gift dialog"],
+        [".gift-account[aria-labelledby=\"gift-groom-name\"] .gift-qr-frame", "aria-label", "Open the groom's Vietcombank QR code"],
+        [".gift-account[aria-labelledby=\"gift-groom-name\"] .gift-qr-image", "alt", "Groom's Vietcombank QR code"],
+        [".gift-account[aria-labelledby=\"gift-bride-name\"] .gift-qr-frame", "aria-label", "Open the bride's Vietcombank QR code"],
+        [".gift-account[aria-labelledby=\"gift-bride-name\"] .gift-qr-image", "alt", "Bride's Vietcombank QR code"],
+        ["#music-toggle", "aria-label", "Turn background music on"],
+        ["#music-toggle", "title", "Turn background music on"],
+      ];
+
+      function setLanguage(language) {
+        currentLanguage = language;
+        document.documentElement.lang = language;
+        document.title = language === "en"
+          ? "Tuấn Anh & Hồng Thư — Wedding Invitation"
+          : "Tuấn Anh & Hồng Thư — Thiệp cưới";
+        document.querySelector('meta[name="description"]').content = language === "en"
+          ? "Wedding invitation for Tuấn Anh and Hồng Thư. We warmly invite you to celebrate with us."
+          : "Thiệp mời lễ thành hôn của Tuấn Anh và Hồng Thư. Trân trọng kính mời bạn đến chung vui.";
+
+        englishMarkup.forEach(([selector, english]) => {
+          document.querySelectorAll(selector).forEach((element) => {
+            if (!originalMarkup.has(element)) originalMarkup.set(element, element.innerHTML);
+            element.innerHTML = language === "en" ? english : originalMarkup.get(element);
+          });
+        });
+        englishAttributes.forEach(([selector, name, english]) => {
+          document.querySelectorAll(selector).forEach((element) => {
+            let attributes = originalAttributes.get(element);
+            if (!attributes) {
+              attributes = new Map();
+              originalAttributes.set(element, attributes);
+            }
+            if (!attributes.has(name)) attributes.set(name, element.getAttribute(name));
+            const original = attributes.get(name);
+            if (language === "en") element.setAttribute(name, english);
+            else if (original === null) element.removeAttribute(name);
+            else element.setAttribute(name, original);
+          });
+        });
+
+        const weekdayLabels = language === "en"
+          ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+          : ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+        document.querySelectorAll("#calendar-grid .weekday").forEach((cell, index) => {
+          cell.textContent = weekdayLabels[index];
+        });
+        const weddingDay = document.querySelector("#calendar-grid .wedding-day");
+        if (weddingDay) weddingDay.setAttribute("aria-label", language === "en" ? "Wedding day" : "Ngày cưới");
+
+        const languageToggle = document.getElementById("language-toggle");
+        languageToggle.textContent = language === "en" ? "VI" : "EN";
+        languageToggle.setAttribute("aria-label", language === "en" ? "Chuyển sang tiếng Việt" : "Switch to English");
+        languageToggle.title = language === "en" ? "Chuyển sang tiếng Việt" : "Switch to English";
+
+        if (typeof updateMusicControl === "function") {
+          updateMusicControl(!backgroundMusic.paused);
+          const messagePairs = [
+            ["Không thể phát nhạc nền. Hãy thử bật lại.", "Unable to play background music. Please try again."],
+            ["Không tải được tệp nhạc nền.", "Could not load the background music file."],
+            ["Chưa cấu hình địa chỉ nhận xác nhận.", "The RSVP form is not configured yet."],
+            ["Chưa gửi được, bạn kiểm tra mạng và thử lại nhé.", "Could not submit your RSVP. Please check your connection and try again."],
+          ];
+          [musicStatus, document.getElementById("rsvp-status")].forEach((status) => {
+            const matchingPair = messagePairs.find(([vietnamese, english]) =>
+              status.textContent === vietnamese || status.textContent === english);
+            if (matchingPair) status.textContent = language === "en" ? matchingPair[1] : matchingPair[0];
+          });
+        }
+
+        if (typeof photos !== "undefined") {
+          photos.forEach((photo, index) => {
+            photo.alt = language === "en"
+              ? `Wedding photo of Tuấn Anh and Hồng Thư ${index + 1}`
+              : `Ảnh cưới Tuấn Anh và Hồng Thư ${index + 1}`;
+            photo.caption = language === "en" ? "Moments from our wedding" : "Những khoảnh khắc của chúng mình";
+          });
+          document.querySelectorAll(".carousel-image").forEach((image, index) => {
+            image.alt = photos[index % photos.length].alt;
+            image.setAttribute("aria-label", language === "en" ? "Enlarge wedding photo" : "Phóng to ảnh cưới");
+          });
+          document.querySelectorAll("#carousel-dots .carousel-dot").forEach((dot, index) => {
+            dot.setAttribute("aria-label", language === "en" ? `Go to photo ${index + 1}` : `Đến ảnh ${index + 1}`);
+          });
+          if (typeof updatePhotoDetails === "function") updatePhotoDetails(activePhoto);
+        }
+
+        if (carouselSwiper) {
+          carouselSwiper.params.a11y.prevSlideMessage = language === "en" ? "Previous slide" : "Ảnh trước";
+          carouselSwiper.params.a11y.nextSlideMessage = language === "en" ? "Next slide" : "Ảnh tiếp theo";
+        }
+      }
+
       const venueLocation = document.getElementById("venue-location").textContent.replace(/\s+/g, " ").trim();
       const directionsUrl = new URL("https://www.google.com/maps/dir/");
       directionsUrl.searchParams.set("api", "1");
@@ -3388,28 +3636,33 @@
         text.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
       const calendarStart = formatCalendarDate(weddingDate);
       const calendarEnd = formatCalendarDate(new Date(weddingDate.getTime() + 3 * 60 * 60 * 1000));
-      const calendarEvent = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Tuan Anh and Hong Thu//Wedding Invitation//VI",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "BEGIN:VEVENT",
-        "UID:tuan-anh-hong-thu-wedding-20270123@wedding-invite",
-        `DTSTAMP:${formatCalendarDate(new Date())}`,
-        `DTSTART:${calendarStart}`,
-        `DTEND:${calendarEnd}`,
-        `SUMMARY:${escapeCalendarText("Lễ cưới Tuấn Anh & Hồng Thư")}`,
-        `DESCRIPTION:${escapeCalendarText("Trân trọng kính mời bạn đến chung vui cùng Tuấn Anh & Hồng Thư.")}`,
-        `LOCATION:${escapeCalendarText(venueLocation)}`,
-        "END:VEVENT",
-        "END:VCALENDAR",
-        "",
-      ].join("\r\n");
+      function createCalendarEvent() {
+        const isEnglish = currentLanguage === "en";
+        return [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          `PRODID:-//Tuan Anh and Hong Thu//Wedding Invitation//${isEnglish ? "EN" : "VI"}`,
+          "CALSCALE:GREGORIAN",
+          "METHOD:PUBLISH",
+          "BEGIN:VEVENT",
+          "UID:tuan-anh-hong-thu-wedding-20270123@wedding-invite",
+          `DTSTAMP:${formatCalendarDate(new Date())}`,
+          `DTSTART:${calendarStart}`,
+          `DTEND:${calendarEnd}`,
+          `SUMMARY:${escapeCalendarText(isEnglish ? "Wedding of Tuấn Anh & Hồng Thư" : "Lễ cưới Tuấn Anh & Hồng Thư")}`,
+          `DESCRIPTION:${escapeCalendarText(isEnglish
+            ? "You are warmly invited to celebrate with Tuấn Anh & Hồng Thư."
+            : "Trân trọng kính mời bạn đến chung vui cùng Tuấn Anh & Hồng Thư.")}`,
+          `LOCATION:${escapeCalendarText(venueLocation)}`,
+          "END:VEVENT",
+          "END:VCALENDAR",
+          "",
+        ].join("\r\n");
+      }
       const calendarLink = document.getElementById("calendar-link");
       calendarLink.addEventListener("click", (event) => {
         event.preventDefault();
-        const downloadUrl = URL.createObjectURL(new Blob([calendarEvent], { type: "text/calendar;charset=utf-8" }));
+        const downloadUrl = URL.createObjectURL(new Blob([createCalendarEvent()], { type: "text/calendar;charset=utf-8" }));
         const downloadLink = document.createElement("a");
         downloadLink.href = downloadUrl;
         downloadLink.download = calendarLink.download;
@@ -3491,7 +3744,7 @@
         image.decoding = "async";
         image.setAttribute("role", "button");
         image.setAttribute("aria-haspopup", "dialog");
-        image.setAttribute("aria-label", "Phóng to ảnh cưới");
+        image.setAttribute("aria-label", currentLanguage === "en" ? "Enlarge wedding photo" : "Phóng to ảnh cưới");
         image.tabIndex = index === 0 ? 0 : -1;
         image.addEventListener("click", openPhotoViewer);
         image.addEventListener("keydown", (event) => {
@@ -3506,7 +3759,7 @@
         const dot = document.createElement("button");
         dot.className = "carousel-dot";
         dot.type = "button";
-        dot.setAttribute("aria-label", `Đến ảnh ${index + 1}`);
+        dot.setAttribute("aria-label", currentLanguage === "en" ? `Go to photo ${index + 1}` : `Đến ảnh ${index + 1}`);
         dot.addEventListener("click", () => {
           showPhoto(index);
           restartCarouselTimer();
@@ -3530,8 +3783,8 @@
           },
           a11y: {
             enabled: true,
-            prevSlideMessage: "Ảnh trước",
-            nextSlideMessage: "Ảnh tiếp theo",
+            prevSlideMessage: currentLanguage === "en" ? "Previous slide" : "Ảnh trước",
+            nextSlideMessage: currentLanguage === "en" ? "Next slide" : "Ảnh tiếp theo",
           },
           coverflowEffect: {
             rotate: 12,
@@ -3603,14 +3856,22 @@
       const backgroundMusic = document.getElementById("background-music");
       const musicToggle = document.getElementById("music-toggle");
       const musicStatus = document.getElementById("music-status");
+      const languageToggle = document.getElementById("language-toggle");
 
       function updateMusicControl(isPlaying) {
         musicToggle.classList.toggle("is-playing", isPlaying);
         musicToggle.setAttribute("aria-pressed", String(isPlaying));
-        const label = isPlaying ? "Tắt nhạc nền" : "Bật nhạc nền";
+        const label = currentLanguage === "en"
+          ? (isPlaying ? "Turn background music off" : "Turn background music on")
+          : (isPlaying ? "Tắt nhạc nền" : "Bật nhạc nền");
         musicToggle.setAttribute("aria-label", label);
         musicToggle.title = label;
       }
+
+      languageToggle.addEventListener("click", () => {
+        setLanguage(currentLanguage === "vi" ? "en" : "vi");
+      });
+      setLanguage("vi");
 
       async function setBackgroundMusicEnabled(enabled) {
         if (!enabled) {
@@ -3632,7 +3893,9 @@
           musicStatus.textContent = "";
         } catch (error) {
           updateMusicControl(false);
-          musicStatus.textContent = "Không thể phát nhạc nền. Hãy thử bật lại.";
+          musicStatus.textContent = currentLanguage === "en"
+            ? "Unable to play background music. Please try again."
+            : "Không thể phát nhạc nền. Hãy thử bật lại.";
           console.error("Không thể phát nhạc nền:", error);
         }
       }
@@ -3644,7 +3907,9 @@
       backgroundMusic.addEventListener("pause", () => updateMusicControl(false));
       backgroundMusic.addEventListener("error", () => {
         updateMusicControl(false);
-        musicStatus.textContent = "Không tải được tệp nhạc nền.";
+        musicStatus.textContent = currentLanguage === "en"
+          ? "Could not load the background music file."
+          : "Không tải được tệp nhạc nền.";
       });
 
       document.getElementById("landing-open").addEventListener("click", (event) => {
@@ -3715,7 +3980,7 @@
       const rsvpGuests = document.getElementById("rsvp-guests");
       const rsvpName = document.getElementById("rsvp-name");
       rsvpName.addEventListener("invalid", () => {
-        rsvpName.setCustomValidity("Vui lòng nhập tên của bạn");
+        rsvpName.setCustomValidity(currentLanguage === "en" ? "Please enter your name" : "Vui lòng nhập tên của bạn");
       });
       rsvpName.addEventListener("input", () => rsvpName.setCustomValidity(""));
       const updateRsvpGuestCount = () => {
@@ -3750,14 +4015,15 @@
       rsvpForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const submitButton = rsvpForm.querySelector('button[type="submit"]');
-        const label = submitButton.textContent;
         rsvpStatus.textContent = "";
         if (!RSVP_ENDPOINT) {
-          rsvpStatus.textContent = "Chưa cấu hình địa chỉ nhận xác nhận.";
+          rsvpStatus.textContent = currentLanguage === "en"
+            ? "The RSVP form is not configured yet."
+            : "Chưa cấu hình địa chỉ nhận xác nhận.";
           return;
         }
         submitButton.disabled = true;
-        submitButton.textContent = "Đang gửi...";
+        submitButton.textContent = currentLanguage === "en" ? "Sending..." : "Đang gửi...";
         try {
           await fetch(RSVP_ENDPOINT, {
             method: "POST",
@@ -3770,10 +4036,12 @@
           rsvpForm.reset();
           updateRsvpGuestCount();
         } catch (error) {
-          rsvpStatus.textContent = "Chưa gửi được, bạn kiểm tra mạng và thử lại nhé.";
+          rsvpStatus.textContent = currentLanguage === "en"
+            ? "Could not submit your RSVP. Please check your connection and try again."
+            : "Chưa gửi được, bạn kiểm tra mạng và thử lại nhé.";
         } finally {
           submitButton.disabled = false;
-          submitButton.textContent = label;
+          submitButton.textContent = currentLanguage === "en" ? "Send RSVP" : "Gửi xác nhận";
         }
       });
 
@@ -3791,7 +4059,7 @@
         header.className = "wish-header";
         name.textContent = data.get("name").toString().trim();
         time.dateTime = submittedAt.toISOString();
-        time.textContent = submittedAt.toLocaleString("vi-VN", {
+        time.textContent = submittedAt.toLocaleString(currentLanguage === "en" ? "en-US" : "vi-VN", {
           hour: "2-digit",
           minute: "2-digit",
           day: "2-digit",
