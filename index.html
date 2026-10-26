@@ -1033,6 +1033,12 @@
         font-style: italic;
       }
 
+      .lunar-date .lunar-number {
+        font-family: inherit;
+        font-size: inherit;
+        font-style: normal;
+      }
+
       .album {
         padding-top: 67px;
         padding-bottom: 72px;
@@ -3147,7 +3153,7 @@
               <span class="day-number">23</span>
               <span class="month-year">Tháng<strong>01</strong>2027</span>
             </div>
-            <p class="lunar-date">(TỨC NGÀY 16 THÁNG 12 NĂM BÍNH NGỌ)</p>
+            <p class="lunar-date">(TỨC NGÀY <span class="lunar-number">16</span> THÁNG <span class="lunar-number">12</span> NĂM BÍNH NGỌ)</p>
           </div>
         </div>
         <img class="details-bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
@@ -3182,7 +3188,7 @@
             <span class="day-number">23</span>
             <span class="month-year">Tháng<strong>01</strong>2027</span>
           </div>
-          <p class="lunar-date">(TỨC NGÀY 16 THÁNG 12 NĂM BÍNH NGỌ)</p>
+          <p class="lunar-date">(TỨC NGÀY <span class="lunar-number">16</span> THÁNG <span class="lunar-number">12</span> NĂM BÍNH NGỌ)</p>
           <div class="event-hours">
             <div class="event-hour">Đón khách<strong>11:00</strong></div>
             <div class="event-hour">Khai tiệc<strong>12:00</strong></div>
@@ -3461,13 +3467,13 @@
         [".ceremony-title", "The wedding ceremony will be held at the family home"],
         ["#details .date-mark .time", "At<br /><strong>09:00</strong><br />Saturday"],
         ["#details .date-mark .month-year", "January<strong>01</strong>2027"],
-        ["#details .lunar-date", "(16TH DAY OF THE 12TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
+        ["#details .lunar-date", "(<span class=\"lunar-number\">16</span>TH DAY OF THE <span class=\"lunar-number\">12</span>TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
         ["#album > .heading", "Wedding Photo Album"],
         ["#reception .heading", "Wedding Reception"],
         [".reception-time", "The reception will begin at"],
         ["#reception .date-mark .time", "Saturday"],
         ["#reception .date-mark .month-year", "January<strong>01</strong>2027"],
-        ["#reception .lunar-date", "(16TH DAY OF THE 12TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
+        ["#reception .lunar-date", "(<span class=\"lunar-number\">16</span>TH DAY OF THE <span class=\"lunar-number\">12</span>TH LUNAR MONTH, YEAR OF THE FIRE HORSE)"],
         ["#reception .event-hour:first-child", "Guest arrival<strong>11:00</strong>"],
         ["#reception .event-hour:last-child", "Reception begins<strong>12:00</strong>"],
         [".calendar-title", "January 2027"],
