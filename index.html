@@ -3261,7 +3261,7 @@
             <p>Chúng mình rất mong được đón bạn trong ngày vui đặc biệt này.</p>
           </article>
         </div>
-        <button class="guestbook-owner-toggle" id="guestbook-owner-toggle" type="button">Quản lý sổ lưu bút (chủ trang)</button>
+        <button class="guestbook-owner-toggle" id="guestbook-owner-toggle" type="button">Quản lý sổ lưu bút</button>
         <p class="guestbook-status" id="guestbook-status" role="status" aria-live="polite"></p>
       </section>
 
@@ -4229,7 +4229,7 @@
       guestbookOwnerToggle.addEventListener("click", async () => {
         if (guestbookAdminToken) {
           guestbookAdminToken = "";
-          guestbookOwnerToggle.textContent = guestbookText("Quản lý sổ lưu bút (chủ trang)", "Manage guestbook (owner)");
+          guestbookOwnerToggle.textContent = guestbookText("Quản lý sổ lưu bút", "Manage guestbook");
           renderGuestbookWishes([]);
           showGuestbookStatus("Đã thoát chế độ quản lý.", "Owner mode signed out.");
           return;
@@ -4260,7 +4260,7 @@
       document.getElementById("language-toggle").addEventListener("click", () => {
         guestbookOwnerToggle.textContent = guestbookAdminToken
           ? guestbookText("Thoát chế độ quản lý", "Exit owner mode")
-          : guestbookText("Quản lý sổ lưu bút (chủ trang)", "Manage guestbook (owner)");
+          : guestbookText("Quản lý sổ lưu bút", "Manage guestbook");
         loadGuestbookWishes().catch(() => {
           showGuestbookStatus("Chưa tải được lời chúc. Vui lòng tải lại trang.", "Could not load wishes. Please reload the page.");
         });
