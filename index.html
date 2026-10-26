@@ -4235,10 +4235,14 @@
           return;
         }
         const token = window.prompt(guestbookText(
-          "Nhập khóa quản trị sổ lưu bút:",
-          "Enter the guestbook admin key:",
+          "Nhập mã PIN quản trị gồm 6 chữ số:",
+          "Enter the 6-digit guestbook admin PIN:",
         ));
         if (!token) return;
+        if (!/^\d{6}$/.test(token)) {
+          showGuestbookStatus("Mã PIN cần có đúng 6 chữ số.", "The PIN must contain exactly 6 digits.");
+          return;
+        }
         guestbookOwnerToggle.disabled = true;
         showGuestbookStatus("Đang xác thực...", "Verifying...");
         try {

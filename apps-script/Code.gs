@@ -1,6 +1,8 @@
 const TO = "tuananhle2612@gmail.com";
 const SHEET_NAME = "RSVP";
 const GUESTBOOK_SHEET_NAME = "Guestbook";
+const GUESTBOOK_AUTH_MAX_FAILURES = 5;
+const GUESTBOOK_AUTH_LOCKOUT_SECONDS = 900;
 
 function doPost(e) {
   const p = (e && e.parameter) || {};
@@ -124,7 +126,35 @@ function guestbookSheet_() {
 
 function isGuestbookAdmin_(token) {
   const expected = PropertiesService.getScriptProperties().getProperty("GUESTBOOK_ADMIN_TOKEN");
-  return Boolean(expected && expected.length >= 20 && token && String(token) === expected);
+  const cache = CacheService.getScriptCache();
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    if (cache.get("guestbookAdminLocked") === "1") return false;
+
+    const isValid = Boolean(
+      expected &&
+      /^\d{6}$/.test(expected) &&
+      token &&
+      /^\d{6}$/.test(String(token)) &&
+      String(token) === expected,
+    );
+    if (isValid) {
+      cache.remove("guestbookAdminFailures");
+      return true;
+    }
+
+    const failures = Number(cache.get("guestbookAdminFailures") || 0) + 1;
+    if (failures >= GUESTBOOK_AUTH_MAX_FAILURES) {
+      cache.put("guestbookAdminLocked", "1", GUESTBOOK_AUTH_LOCKOUT_SECONDS);
+      cache.remove("guestbookAdminFailures");
+    } else {
+      cache.put("guestbookAdminFailures", String(failures), GUESTBOOK_AUTH_LOCKOUT_SECONDS);
+    }
+    return false;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function guestbookResult_(requestId, result) {
