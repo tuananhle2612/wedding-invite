@@ -1040,19 +1040,20 @@
       }
 
       .album {
-        padding-top: 67px;
-        padding-bottom: 72px;
+        padding-top: 32px;
+        padding-bottom: 48px;
         text-align: center;
         background: transparent;
       }
 
       .album .heading {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        font-size: 20px;
       }
 
       .carousel {
         position: relative;
-        width: min(100%, 500px);
+        width: min(100%, 900px);
         margin: 0 auto;
       }
 
@@ -1066,24 +1067,27 @@
         height: auto;
         align-items: center;
         justify-content: center;
+        overflow: visible;
       }
 
       .carousel-image {
         display: block;
-        width: 100%;
-        height: clamp(390px, 58vw, 560px);
+        width: min(100%, 290px);
+        height: clamp(360px, 53vw, 430px);
         object-fit: cover;
-        border-radius: 12px;
+        border-radius: 8px;
         backface-visibility: hidden;
         background: #e2d8ce;
-        box-shadow: 0 20px 42px rgba(44, 25, 24, 0.2);
+        box-shadow: 0 14px 28px rgba(44, 25, 24, 0.18);
         cursor: zoom-in;
-        opacity: 0.68;
-        transition: opacity 850ms ease;
+        opacity: 0.22;
+        transition: opacity 850ms ease, transform 850ms ease;
+        transform: scale(0.94);
       }
 
       .swiper-slide-active .carousel-image {
         opacity: 1;
+        transform: scale(1);
       }
 
       .carousel-image:focus-visible {
@@ -1096,13 +1100,13 @@
         z-index: 5;
         top: 50%;
         display: grid;
-        width: 42px;
-        height: 42px;
+        width: 30px;
+        height: 30px;
         place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        border: 0;
         border-radius: 50%;
-        color: var(--wine);
-        background: transparent;
+        color: #fffaf3;
+        background: rgba(61, 48, 48, 0.72);
         cursor: pointer;
         font-family: var(--serif);
         font-size: 24px;
@@ -1110,43 +1114,41 @@
       }
 
       .carousel-arrow:hover {
-        background: rgba(67, 17, 29, 0.12);
+        background: rgba(67, 17, 29, 0.9);
       }
 
       .carousel-arrow.previous {
-        left: -22px;
+        left: 16%;
       }
 
       .carousel-arrow.next {
-        right: -22px;
-      }
-
-      .carousel-caption {
-        margin: 15px 0 0;
-        color: var(--muted);
-        font-family: var(--serif);
-        font-size: 18px;
-        font-style: italic;
+        right: 16%;
       }
 
       .carousel-dots {
         display: flex;
+        min-height: 8px;
         justify-content: center;
-        gap: 9px;
-        margin-top: 18px;
+        align-items: center;
+        gap: 6px;
+        margin-top: 0;
       }
 
       .carousel-dot {
-        width: 8px;
-        height: 8px;
+        width: 5px;
+        height: 5px;
         padding: 0;
-        border: 1px solid var(--wine);
+        border: 0;
         border-radius: 50%;
-        background: transparent;
+        background: rgba(96, 26, 40, 0.34);
         cursor: pointer;
+        transition: width 250ms ease, background-color 250ms ease;
       }
 
       .carousel-dot[aria-current="true"] {
+        width: 19px;
+        height: 6px;
+        border-radius: 999px;
         background: var(--wine);
       }
 
@@ -2644,19 +2646,19 @@
         }
 
         .carousel {
-          width: calc(100% - 36px);
+          width: 100%;
         }
 
         .carousel-image {
-          height: clamp(360px, 112vw, 460px);
+          height: clamp(300px, 96vw, 360px);
         }
 
         .carousel-arrow.previous {
-          left: -14px;
+          left: 4px;
         }
 
         .carousel-arrow.next {
-          right: -14px;
+          right: 4px;
         }
 
         .photo-viewer {
@@ -3135,7 +3137,6 @@
           </div>
           <button class="carousel-arrow previous" id="previous-photo" type="button" aria-label="Ảnh trước">‹</button>
           <button class="carousel-arrow next" id="next-photo" type="button" aria-label="Ảnh tiếp theo">›</button>
-          <p class="carousel-caption" id="carousel-caption">Những khoảnh khắc của chúng mình</p>
           <div class="carousel-dots" id="carousel-dots" aria-label="Chọn ảnh"></div>
         </div>
       </section>
@@ -3675,7 +3676,6 @@
       }));
       let activePhoto = 0;
       const carouselSlides = document.getElementById("carousel-slides");
-      const carouselCaption = document.getElementById("carousel-caption");
       const carouselDots = document.getElementById("carousel-dots");
       const photoViewer = document.getElementById("photo-viewer");
       const photoViewerImage = document.getElementById("photo-viewer-image");
@@ -3686,7 +3686,6 @@
       function updatePhotoDetails(index) {
         activePhoto = index;
         const photo = photos[index];
-        carouselCaption.textContent = photo.caption;
         [...carouselDots.children].forEach((dot, dotIndex) => {
           dot.setAttribute("aria-current", String(dotIndex === index));
         });
@@ -3768,7 +3767,7 @@
         carouselSwiper = new Swiper("#carousel-swiper", {
           effect: "coverflow",
           centeredSlides: true,
-          slidesPerView: 1.08,
+          slidesPerView: 1.4,
           loop: true,
           speed: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 850,
           grabCursor: true,
@@ -3783,15 +3782,15 @@
             nextSlideMessage: currentLanguage === "en" ? "Next slide" : "Ảnh tiếp theo",
           },
           coverflowEffect: {
-            rotate: 12,
+            rotate: 42,
             stretch: 0,
-            depth: 130,
-            modifier: 1.6,
+            depth: 220,
+            modifier: 1.2,
             slideShadows: false,
           },
           breakpoints: {
             640: {
-              slidesPerView: 1.2,
+              slidesPerView: 2.5,
             },
           },
           on: {
