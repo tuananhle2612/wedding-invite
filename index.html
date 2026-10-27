@@ -225,6 +225,43 @@
         font-weight: 500;
       }
 
+      .cover-countdown {
+        display: grid;
+        width: min(100%, 300px);
+        gap: 5px;
+        margin: 0 auto 14px;
+        color: var(--wine);
+      }
+
+      .cover-countdown-units {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .cover-countdown-unit {
+        display: grid;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .cover-countdown-value {
+        color: var(--wine);
+        font-family: "Cormorant Garamond", "Times New Roman", serif;
+        font-size: 22px;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .cover-countdown-label {
+        color: var(--wine);
+        font-family: "Cormorant Garamond", "Times New Roman", serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+      }
+
       .landing-divider {
         width: 112px;
         height: 1px;
@@ -546,7 +583,7 @@
         width: min(100%, 420px);
         aspect-ratio: 333 / 384;
         height: auto;
-        margin: 76px auto 0;
+        margin: 35px auto 0;
       }
 
       .portrait {
@@ -2472,6 +2509,18 @@
           font-size: 16px;
         }
 
+        .cover-countdown-units {
+          gap: 5px;
+        }
+
+        .cover-countdown-value {
+          font-size: 20px;
+        }
+
+        .cover-countdown-label {
+          font-size: 10px;
+        }
+
         .landing-open {
           min-width: 132px;
           min-height: 44px;
@@ -2497,7 +2546,7 @@
 
         .envelope-scene {
           width: min(100%, 420px);
-          margin-top: 38px;
+          margin-top: 28px;
         }
 
         .wax-seal {
@@ -3059,6 +3108,14 @@
 
     <main class="invitation" id="invitation" hidden>
       <header class="paper-section cover" id="cover">
+        <div class="cover-countdown" role="group" aria-label="Đếm ngược đến ngày cưới">
+          <div class="cover-countdown-units">
+            <div class="cover-countdown-unit"><span class="cover-countdown-value" id="countdown-days">0</span><span class="cover-countdown-label" id="countdown-days-label">ngày</span></div>
+            <div class="cover-countdown-unit"><span class="cover-countdown-value" id="countdown-hours">00</span><span class="cover-countdown-label" id="countdown-hours-label">giờ</span></div>
+            <div class="cover-countdown-unit"><span class="cover-countdown-value" id="countdown-minutes">00</span><span class="cover-countdown-label" id="countdown-minutes-label">phút</span></div>
+            <div class="cover-countdown-unit"><span class="cover-countdown-value" id="countdown-seconds">00</span><span class="cover-countdown-label" id="countdown-seconds-label">giây</span></div>
+          </div>
+        </div>
         <p class="save-date">Save the date</p>
         <p class="cover-date">Thứ bảy · 23 tháng 1 · 2027</p>
         <div class="envelope-scene" aria-label="Tấm ảnh cưới được đặt trong phong bì đỏ">
@@ -3406,11 +3463,26 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
       const weddingDate = new Date("2027-01-23T12:00:00+07:00");
+      const countdownDate = new Date("2027-01-23T11:00:00+07:00");
+      function updateWeddingCountdown() {
+        const remainingSeconds = Math.max(0, Math.floor((countdownDate.getTime() - Date.now()) / 1000));
+        document.getElementById("countdown-days").textContent = String(Math.floor(remainingSeconds / 86400));
+        document.getElementById("countdown-hours").textContent = String(Math.floor((remainingSeconds % 86400) / 3600)).padStart(2, "0");
+        document.getElementById("countdown-minutes").textContent = String(Math.floor((remainingSeconds % 3600) / 60)).padStart(2, "0");
+        document.getElementById("countdown-seconds").textContent = String(remainingSeconds % 60).padStart(2, "0");
+      }
+      updateWeddingCountdown();
+      window.setInterval(updateWeddingCountdown, 1000);
+
       let currentLanguage = "vi";
       const originalMarkup = new WeakMap();
       const originalAttributes = new WeakMap();
       const englishMarkup = [
         [".landing-date", "January 23, 2027"],
+        ["#countdown-days-label", "days"],
+        ["#countdown-hours-label", "hours"],
+        ["#countdown-minutes-label", "minutes"],
+        ["#countdown-seconds-label", "seconds"],
         [".landing-invite", "You are invited"],
         [".landing-open-label", "Open invitation"],
         [".cover-date", "Saturday · January 23 · 2027"],
@@ -3478,6 +3550,7 @@
       ];
       const englishAttributes = [
         [".landing-screen", "aria-label", "Wedding invitation"],
+        [".cover-countdown", "aria-label", "Countdown to the wedding"],
         [".envelope-scene", "aria-label", "A wedding photo nestled inside a red envelope"],
         [".portrait img", "alt", "Wedding photo of Tuấn Anh and Hồng Thư"],
         ["#venue-map", "title", "Map to MIKADO Restaurant, Da Nang"],
