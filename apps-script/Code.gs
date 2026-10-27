@@ -1,4 +1,5 @@
 const TO = "tuananhle2612@gmail.com";
+const BRIDE_EMAIL = "nguyenhongthu462@gmail.com";
 const SHEET_NAME = "RSVP";
 const GUESTBOOK_SHEET_NAME = "Guestbook";
 const GUESTBOOK_AUTH_MAX_FAILURES = 5;
@@ -35,7 +36,7 @@ function doPost(e) {
 
   const status = attending ? "Có tham dự (" + guests + " người)" : "Không tham dự";
   MailApp.sendEmail({
-    to: TO,
+    to: attending ? [TO, BRIDE_EMAIL].join(",") : TO,
     subject: "RSVP: " + name + " - " + status,
     body: "Tên: " + name + "\nTham dự: " + status + "\nLời nhắn: " + (message || "-"),
   });

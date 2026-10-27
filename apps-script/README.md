@@ -7,3 +7,5 @@
 5. Keep the deployed `/exec` URL in `RSVP_ENDPOINT` in `index.html` (the current value can be retained if updating the existing deployment).
 
 Guestbook messages are stored in a separate `Guestbook` sheet. Visitors can read and add messages; deleting requires the admin PIN, which is checked by Apps Script on every privileged request. Five failed PIN attempts temporarily block guestbook administration for 15 minutes. This is a global limit shared by all visitors, so repeated incorrect attempts can temporarily prevent the owner from managing wishes. Existing RSVP submissions continue to be stored in the `RSVP` sheet.
+
+RSVP notification emails for guests who confirm attendance are sent to both the groom (`tuananhle2612@gmail.com`) and bride (`nguyenhongthu462@gmail.com`). Decline notifications continue to be sent to the groom only.
