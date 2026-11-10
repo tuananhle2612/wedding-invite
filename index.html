@@ -57,9 +57,7 @@
         overflow: hidden;
         place-items: center;
         padding: 24px 16px;
-        background:
-          radial-gradient(ellipse at 50% 48%, rgba(139, 37, 47, 0.42), transparent 53%),
-          linear-gradient(135deg, #651821, #4b0f18 68%, #390b13);
+        background: url("assets/photos/Background/background_1.JPG") center / cover no-repeat;
       }
 
       .landing-screen[hidden] {
@@ -192,10 +190,9 @@
         justify-items: center;
         overflow: hidden;
         padding: 36px 34px 30px;
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        border-radius: 7px;
-        background: #f8f1e9;
-        box-shadow: 0 18px 46px rgba(26, 4, 8, 0.34);
+        border: 0;
+        background: transparent;
+        box-shadow: none;
         text-align: center;
       }
 
@@ -204,24 +201,24 @@
         z-index: 1;
         display: grid;
         margin: 0;
-        color: #5f1a25;
-        font-family: "Viaoda Libre", "EB Garamond", var(--serif);
+        color: #fff;
+        font-family: var(--sans);
         font-size: 38px;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 0.96;
       }
 
       .landing-names .amp {
-        font-family: "EB Garamond", var(--serif);
+        font-family: var(--sans);
         font-size: 20px;
         line-height: 1;
       }
 
       .landing-date {
         margin: 0;
-        color: #805050;
-        font-family: "Lora", var(--serif);
-        font-size: 18px;
+        color: #fff;
+        font-family: var(--sans);
+        font-size: 22px;
         font-weight: 500;
       }
 
@@ -266,7 +263,7 @@
         width: 112px;
         height: 1px;
         margin: 0;
-        background: linear-gradient(90deg, transparent, #9d765f 28%, #9d765f 72%, transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8) 28%, rgba(255, 255, 255, 0.8) 72%, transparent);
       }
 
       .landing-divider::after {
@@ -274,8 +271,8 @@
         width: 13px;
         height: 13px;
         margin: -6px auto 0;
-        color: #805447;
-        background: #f8f1e9;
+        color: #fff;
+        background: transparent;
         content: "❧";
         font-size: 15px;
         line-height: 13px;
@@ -283,10 +280,16 @@
 
       .landing-invite {
         margin: 0;
-        color: #805050;
-        font-family: "Lora", var(--serif);
+        color: #fff;
+        font-family: var(--sans);
         font-size: 18px;
         font-weight: 500;
+      }
+
+      .landing-names,
+      .landing-date,
+      .landing-invite {
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.55);
       }
 
       .landing-open {
@@ -298,19 +301,21 @@
         padding: 0 28px;
         border: 0;
         border-radius: 24px;
-        color: #fff6ed;
-        background: #641923;
-        box-shadow: 0 4px 10px rgba(61, 12, 20, 0.23);
+        color: #fff;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.75);
+        background: transparent;
+        box-shadow: none;
         cursor: pointer;
-        font-family: var(--serif);
-        font-size: 19px;
-        font-weight: 600;
+        font-family: var(--sans);
+        font-size: 16px;
+        font-weight: 500;
         transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
       }
 
       .landing-open-label {
         position: relative;
         z-index: 1;
+        font-weight: 600;
       }
 
       .landing-open-shine {
@@ -327,8 +332,8 @@
 
       .landing-open:hover {
         transform: translateY(-2px) scale(1.04);
-        background: #7b2631;
-        box-shadow: 0 7px 18px rgba(61, 12, 20, 0.35);
+        background: transparent;
+        box-shadow: none;
       }
 
       .landing-open:active,
@@ -445,11 +450,12 @@
         width: 52px;
         height: 52px;
         place-items: center;
-        border: 1px solid rgba(255, 244, 227, 0.76);
+        border: 0;
         border-radius: 50%;
         color: #fff8ef;
-        background: var(--wine);
-        box-shadow: 0 5px 18px rgba(48, 16, 21, 0.3);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.75);
+        background: transparent;
+        box-shadow: none;
         cursor: pointer;
         font-family: var(--serif);
         font-size: 25px;
@@ -458,8 +464,8 @@
       }
 
       .music-toggle:hover {
-        background: #7b2631;
-        box-shadow: 0 7px 21px rgba(48, 16, 21, 0.36);
+        background: transparent;
+        box-shadow: none;
         transform: translateY(-2px);
       }
 
@@ -475,11 +481,12 @@
         bottom: calc(20px + env(safe-area-inset-bottom));
         width: 52px;
         height: 52px;
-        border: 1px solid rgba(255, 244, 227, 0.76);
+        border: 0;
         border-radius: 50%;
         color: #fff8ef;
-        background: var(--wine);
-        box-shadow: 0 5px 18px rgba(48, 16, 21, 0.3);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.75);
+        background: transparent;
+        box-shadow: none;
         cursor: pointer;
         font-family: var(--sans);
         font-size: 12px;
@@ -488,8 +495,8 @@
       }
 
       .language-toggle:hover {
-        background: #7b2631;
-        box-shadow: 0 7px 21px rgba(48, 16, 21, 0.36);
+        background: transparent;
+        box-shadow: none;
         transform: translateY(-2px);
       }
 
@@ -3093,11 +3100,9 @@
           </g>
         </svg>
         </template>
-        <img class="landing-bouquet" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
-        <img class="landing-bouquet right" src="assets/wedding-flowers.webp" alt="" aria-hidden="true" />
         <h1 class="landing-names"><span>Tuấn Anh</span><span class="amp">&amp;</span><span>Hồng Thư</span></h1>
         <span class="landing-divider" aria-hidden="true"></span>
-        <p class="landing-date">23 tháng 1, 2027</p>
+        <p class="landing-date">23.01.2027</p>
         <p class="landing-invite">Thân Mời</p>
         <button class="landing-open" id="landing-open" type="button">
           <span class="landing-open-label">Mở thiệp</span>
@@ -3478,7 +3483,7 @@
       const originalMarkup = new WeakMap();
       const originalAttributes = new WeakMap();
       const englishMarkup = [
-        [".landing-date", "January 23, 2027"],
+        [".landing-date", "23.01.2027"],
         ["#countdown-days-label", "days"],
         ["#countdown-hours-label", "hours"],
         ["#countdown-minutes-label", "minutes"],
