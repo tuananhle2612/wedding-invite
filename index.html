@@ -137,6 +137,11 @@
         50%, 100% { left: 100%; }
       }
 
+      @keyframes invitation-button-shine {
+        0%, 15% { background-position: -48px 0, 0 0; }
+        55%, 100% { background-position: calc(100% + 48px) 0, 0 0; }
+      }
+
       @keyframes opening-button-flash {
         0%, 100% {
           transform: scale(1);
@@ -606,7 +611,12 @@
         animation: portrait-float 4.8s ease-in-out infinite;
         transform: rotate(12deg);
         transform-origin: center;
-        transition: transform 1100ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 700ms ease;
+        will-change: transform;
+      }
+
+      .portrait.is-raised {
+        z-index: 40;
+        animation-play-state: paused;
       }
 
       @keyframes portrait-float {
@@ -871,16 +881,40 @@
         transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
       }
 
-      .cover-album-link:hover {
-        color: var(--wine);
-        background: transparent;
-        box-shadow: 0 5px 16px rgba(96, 26, 40, 0.2);
+      .cover-actions .open-button,
+      .cover-album-link {
+        background-image:
+          linear-gradient(110deg, transparent 34%, rgba(255, 255, 255, 0.38) 50%, transparent 66%),
+          linear-gradient(var(--wine), var(--wine));
+        background-position: -48px 0, 0 0;
+        background-repeat: no-repeat;
+        background-size: 48px 100%, 100% 100%;
+        animation: invitation-button-shine 3s ease-in-out infinite;
       }
 
+      .cover-album-link:hover,
       .open-button:hover {
-        color: var(--wine);
-        background: transparent;
-        box-shadow: 0 5px 16px rgba(96, 26, 40, 0.2);
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 5px 16px rgba(96, 26, 40, 0.28);
+      }
+
+      .cover-actions .open-button:active,
+      .cover-album-link:active {
+        transform: translateY(1px) scale(0.96);
+        box-shadow: 0 0 0 5px rgba(181, 138, 85, 0.24), inset 0 2px 6px rgba(45, 10, 19, 0.28);
+      }
+
+      .cover-actions .open-button.is-activating,
+      .cover-album-link.is-activating {
+        animation:
+          opening-button-flash 620ms ease-out both,
+          invitation-button-shine 620ms ease-in-out both;
+      }
+
+      .cover-actions .open-button,
+      .cover-album-link,
+      .venue .text-link {
+        border-radius: 999px;
       }
 
       .invitation-details {
@@ -3466,6 +3500,7 @@
     <p class="music-status" id="music-status" role="status" aria-live="polite"></p>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
       const weddingDate = new Date("2027-01-23T12:00:00+07:00");
       const countdownDate = new Date("2027-01-23T11:00:00+07:00");
@@ -3478,6 +3513,39 @@
       }
       updateWeddingCountdown();
       window.setInterval(updateWeddingCountdown, 1000);
+
+      const envelopeScene = document.querySelector(".envelope-scene");
+      const envelopePortrait = envelopeScene.querySelector(".portrait");
+      if (
+        window.gsap &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        window.gsap.set(envelopePortrait, { force3D: true });
+        envelopePortrait.addEventListener("pointerenter", (event) => {
+          if (event.pointerType !== "mouse") return;
+          envelopePortrait.classList.add("is-raised");
+          window.gsap.to(envelopePortrait, {
+            yPercent: -65,
+            rotation: 0,
+            scale: 1.04,
+            duration: 0.85,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+        });
+        envelopeScene.addEventListener("pointerleave", () => {
+          window.gsap.to(envelopePortrait, {
+            yPercent: 0,
+            rotation: 12,
+            scale: 1,
+            duration: 0.7,
+            ease: "power2.inOut",
+            overwrite: "auto",
+            onComplete: () => envelopePortrait.classList.remove("is-raised"),
+          });
+        });
+      }
 
       let currentLanguage = "vi";
       const originalMarkup = new WeakMap();
@@ -3747,7 +3815,7 @@
         window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
       });
 
-      const photos = Array.from({ length: 12 }, (_, index) => ({
+      const photos = Array.from({ length: 27 }, (_, index) => ({
         src: `assets/photos/wedding/${index + 1}.jpg`,
         alt: `Ảnh cưới Tuấn Anh và Hồng Thư ${index + 1}`,
         caption: "Những khoảnh khắc của chúng mình",
@@ -3985,6 +4053,19 @@
           : "Không tải được tệp nhạc nền.";
       });
 
+      const coverActionEffectTimers = new WeakMap();
+      function playCoverActionEffect(button) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        window.clearTimeout(coverActionEffectTimers.get(button));
+        button.classList.remove("is-activating");
+        void button.offsetWidth;
+        button.classList.add("is-activating");
+        coverActionEffectTimers.set(button, window.setTimeout(() => {
+          button.classList.remove("is-activating");
+          coverActionEffectTimers.delete(button);
+        }, 650));
+      }
+
       document.getElementById("landing-open").addEventListener("click", (event) => {
         const openButton = event.currentTarget;
         openButton.disabled = true;
@@ -4043,7 +4124,11 @@
       });
 
       document.getElementById("open-invitation").addEventListener("click", () => {
-        window.scrollTo({ top: document.getElementById("reception").offsetTop, behavior: "instant" });
+        playCoverActionEffect(document.getElementById("open-invitation"));
+        document.getElementById("reception").scrollIntoView({ behavior: "auto", block: "start" });
+      });
+      document.querySelector(".cover-album-link").addEventListener("click", (event) => {
+        playCoverActionEffect(event.currentTarget);
       });
 
       const rsvpDialog = document.getElementById("rsvp-dialog");
