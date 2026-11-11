@@ -1184,7 +1184,7 @@
         border: 0;
         border-radius: 50%;
         color: #fffaf3;
-        background: rgba(61, 48, 48, 0.72);
+        background: transparent;
         cursor: pointer;
         font-family: var(--serif);
         font-size: 24px;
@@ -1192,7 +1192,7 @@
       }
 
       .carousel-arrow:hover {
-        background: rgba(67, 17, 29, 0.9);
+        background: transparent;
       }
 
       .carousel-arrow.previous {
@@ -1264,6 +1264,8 @@
         min-height: 0;
         object-fit: contain;
         user-select: none;
+        -webkit-user-drag: none;
+        touch-action: pan-y pinch-zoom;
       }
 
       .photo-viewer-caption {
@@ -1282,10 +1284,10 @@
         width: 48px;
         height: 48px;
         place-items: center;
-        border: 1px solid rgba(255, 248, 239, 0.78);
+        border: 0;
         border-radius: 50%;
         color: #fff8ef;
-        background: rgba(91, 24, 35, 0.82);
+        background: transparent;
         cursor: pointer;
         font-family: var(--serif);
         font-size: 29px;
@@ -1294,7 +1296,7 @@
       }
 
       .photo-viewer-button:hover {
-        background: var(--wine);
+        background: transparent;
         transform: scale(1.06);
       }
 
@@ -3960,6 +3962,26 @@
       document.getElementById("photo-viewer-close").addEventListener("click", closePhotoViewer);
       document.getElementById("photo-viewer-previous").addEventListener("click", () => showPhoto(activePhoto - 1));
       document.getElementById("photo-viewer-next").addEventListener("click", () => showPhoto(activePhoto + 1));
+      let photoSwipeStart;
+      photoViewerImage.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse" || !event.isPrimary) return;
+        photoSwipeStart = {
+          x: event.clientX,
+          y: event.clientY,
+          pointerId: event.pointerId,
+        };
+      });
+      photoViewerImage.addEventListener("pointerup", (event) => {
+        if (!photoSwipeStart || event.pointerId !== photoSwipeStart.pointerId) return;
+        const deltaX = event.clientX - photoSwipeStart.x;
+        const deltaY = event.clientY - photoSwipeStart.y;
+        photoSwipeStart = undefined;
+        if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+        showPhoto(activePhoto + (deltaX < 0 ? 1 : -1));
+      });
+      photoViewerImage.addEventListener("pointercancel", () => {
+        photoSwipeStart = undefined;
+      });
       photoViewer.addEventListener("keydown", (event) => {
         if (event.key === "Escape") closePhotoViewer();
       });
